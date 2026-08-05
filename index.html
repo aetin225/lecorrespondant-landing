@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LE CORRESPONDANT — Plateforme de conformité DCP</title>
+<meta name="description" content="LE CORRESPONDANT est la solution SaaS de conformité DCP pour les organisations en Côte d'Ivoire. Conforme à la Loi n°2013-450 et supervisé par l'ARTCI.">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --blue:#1F4E79;--blue-light:#2E75B6;--blue-dark:#0d3556;
+    --orange:#EF9F27;--orange-dark:#C55A11;
+    --bg:#f8fafc;--white:#ffffff;--gray:#f1f5f9;--text:#1a1a1a;--muted:#64748b;
+  }
+  body{font-family:system-ui,-apple-system,sans-serif;color:var(--text);background:var(--white);line-height:1.6}
+  a{text-decoration:none;color:inherit}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);border-bottom:1px solid #e2e8f0;padding:0 5%}
+  .nav-inner{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo-icon{width:38px;height:42px}
+  .logo-text{font-size:17px;font-weight:700;color:var(--blue);letter-spacing:-0.3px}
+  .logo-sub{font-size:11px;color:var(--muted);letter-spacing:0.5px}
+  .nav-links{display:flex;align-items:center;gap:8px}
+  .nav-links a{padding:8px 16px;border-radius:8px;font-size:14px;font-weight:500;color:var(--muted);transition:all .15s}
+  .nav-links a:hover{color:var(--blue);background:#f0f6ff}
+  .nav-cta{background:var(--blue)!important;color:#fff!important;padding:9px 20px!important;border-radius:8px}
+  .nav-cta:hover{background:var(--blue-light)!important}
+
+  /* HERO */
+  .hero{background:linear-gradient(160deg,var(--blue-dark) 0%,var(--blue) 55%,#1a6ba0 100%);color:#fff;padding:100px 5% 120px;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);padding:6px 16px;border-radius:20px;font-size:13px;margin-bottom:28px;backdrop-filter:blur(4px)}
+  .hero h1{font-size:clamp(36px,5vw,60px);font-weight:800;line-height:1.15;margin-bottom:24px;letter-spacing:-1px}
+  .hero h1 span{color:var(--orange)}
+  .hero p{font-size:18px;color:rgba(255,255,255,0.85);max-width:620px;margin:0 auto 40px;line-height:1.7}
+  .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn-primary{background:var(--orange);color:#fff;padding:14px 32px;border-radius:10px;font-size:16px;font-weight:700;transition:all .15s;display:inline-flex;align-items:center;gap:8px}
+  .btn-primary:hover{background:var(--orange-dark);transform:translateY(-1px)}
+  .btn-secondary{background:rgba(255,255,255,0.12);color:#fff;padding:14px 32px;border-radius:10px;font-size:16px;font-weight:600;border:1px solid rgba(255,255,255,0.25);transition:all .15s;backdrop-filter:blur(4px)}
+  .btn-secondary:hover{background:rgba(255,255,255,0.2)}
+  .hero-stats{display:flex;gap:40px;justify-content:center;margin-top:64px;flex-wrap:wrap}
+  .stat{text-align:center}
+  .stat-num{font-size:32px;font-weight:800;color:var(--orange)}
+  .stat-label{font-size:13px;color:rgba(255,255,255,0.7);margin-top:4px}
+
+  /* SECTION */
+  section{padding:80px 5%}
+  .container{max-width:1200px;margin:auto}
+  .section-label{display:inline-block;background:#e0f0ff;color:var(--blue);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px}
+  .section-title{font-size:clamp(28px,3.5vw,42px);font-weight:800;color:var(--text);line-height:1.2;margin-bottom:16px;letter-spacing:-0.5px}
+  .section-sub{font-size:17px;color:var(--muted);max-width:580px;line-height:1.7}
+
+  /* MODULES */
+  .modules{background:var(--gray)}
+  .modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:48px}
+  .module-card{background:#fff;border-radius:14px;padding:28px;border:1px solid #e2e8f0;transition:all .2s;position:relative;overflow:hidden}
+  .module-card:hover{transform:translateY(-3px);border-color:var(--blue-light);box-shadow:0 12px 32px rgba(31,78,121,0.12)}
+  .module-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);border-radius:14px 14px 0 0;transform:scaleX(0);transition:.2s;transform-origin:left}
+  .module-card:hover::before{transform:scaleX(1)}
+  .module-num{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--orange);text-transform:uppercase;margin-bottom:10px}
+  .module-title{font-size:17px;font-weight:700;color:var(--blue);margin-bottom:8px}
+  .module-desc{font-size:14px;color:var(--muted);line-height:1.6}
+  .module-icon{font-size:28px;margin-bottom:14px}
+
+  /* FEATURES */
+  .features-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:60px}
+  @media(max-width:768px){.features-grid{grid-template-columns:1fr}}
+  .feature-list{display:flex;flex-direction:column;gap:28px}
+  .feature-item{display:flex;gap:16px;align-items:flex-start}
+  .feature-icon{width:44px;height:44px;background:#e0f0ff;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .feature-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:5px}
+  .feature-desc{font-size:14px;color:var(--muted);line-height:1.6}
+  .feature-visual{background:linear-gradient(135deg,var(--blue),var(--blue-light));border-radius:20px;padding:40px;color:#fff;min-height:400px;display:flex;flex-direction:column;justify-content:space-between}
+  .visual-title{font-size:20px;font-weight:700;margin-bottom:8px}
+  .visual-sub{font-size:14px;opacity:.8;margin-bottom:32px}
+  .visual-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .v-stat{background:rgba(255,255,255,0.12);border-radius:10px;padding:16px}
+  .v-stat-num{font-size:28px;font-weight:800;color:var(--orange)}
+  .v-stat-label{font-size:12px;opacity:.8;margin-top:4px}
+  .visual-modules{display:flex;flex-direction:column;gap:10px}
+  .v-module{background:rgba(255,255,255,0.1);border-radius:8px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;font-size:14px}
+  .v-badge{background:var(--orange);padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
+
+  /* CONFORMITE */
+  .conformite{background:var(--blue);color:#fff;text-align:center}
+  .conformite .section-title{color:#fff}
+  .conformite .section-sub{color:rgba(255,255,255,0.8);margin:0 auto}
+  .conformite .section-label{background:rgba(255,255,255,0.15);color:#fff}
+  .loi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:48px}
+  .loi-card{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:28px;backdrop-filter:blur(4px);transition:all .2s}
+  .loi-card:hover{background:rgba(255,255,255,0.15)}
+  .loi-icon{font-size:32px;margin-bottom:16px}
+  .loi-title{font-size:15px;font-weight:700;margin-bottom:8px}
+  .loi-desc{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.6}
+
+  /* CONTACT */
+  .contact{background:var(--gray)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:48px}
+  @media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
+  .contact-info{display:flex;flex-direction:column;gap:24px}
+  .contact-item{display:flex;gap:16px;align-items:flex-start}
+  .contact-icon{width:48px;height:48px;background:var(--blue);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;color:#fff}
+  .contact-label{font-size:13px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+  .contact-val{font-size:16px;font-weight:600;color:var(--text)}
+  .contact-cta{background:#fff;border-radius:16px;padding:40px;border:1px solid #e2e8f0;text-align:center}
+  .contact-cta h3{font-size:22px;font-weight:700;color:var(--blue);margin-bottom:12px}
+  .contact-cta p{color:var(--muted);margin-bottom:28px;font-size:15px}
+  .cta-btn{display:inline-block;background:var(--blue);color:#fff;padding:14px 32px;border-radius:10px;font-size:16px;font-weight:700;transition:all .15s}
+  .cta-btn:hover{background:var(--blue-light);transform:translateY(-1px)}
+
+  /* FOOTER */
+  footer{background:var(--blue-dark);color:rgba(255,255,255,0.7);padding:40px 5%;text-align:center}
+  footer a{color:var(--orange)}
+  .footer-logo{font-size:20px;font-weight:800;color:#fff;margin-bottom:8px}
+  .footer-sub{font-size:13px;margin-bottom:24px}
+  .footer-links{display:flex;justify-content:center;gap:24px;margin-bottom:24px;flex-wrap:wrap}
+  .footer-links a{font-size:13px;color:rgba(255,255,255,0.6);transition:.15s}
+  .footer-links a:hover{color:#fff}
+  .footer-copy{font-size:12px;color:rgba(255,255,255,0.4)}
+
+  @media(max-width:640px){
+    .hero{padding:70px 5% 80px}
+    .hero-stats{gap:24px}
+    .nav-links a:not(.nav-cta){display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">
+      <svg class="logo-icon" viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 5 L90 22 L90 68 Q90 95 50 108 Q10 95 10 68 L10 22 Z" fill="#DEEAF1"/>
+        <path d="M50 14 L82 29 L82 68 Q82 90 50 101 Q18 90 18 68 L18 29 Z" fill="#2E75B6"/>
+        <path d="M28 58 L44 74 L72 42" fill="none" stroke="white" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <div class="logo-text">LE CORRESPONDANT</div>
+        <div class="logo-sub">ARTCI · Loi 2013-450 · Côte d'Ivoire</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#modules">Modules</a>
+      <a href="#conformite">Conformité</a>
+      <a href="#contact">Contact</a>
+      <a href="https://platform.lecorrespondant.ci" class="nav-cta">Accéder à la plateforme →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    🛡 Conforme Loi n°2013-450 · ARTCI Côte d'Ivoire
+  </div>
+  <h1>La conformité DCP,<br><span>simplifiée pour vous</span></h1>
+  <p>LE CORRESPONDANT centralise tous vos processus de protection des données personnelles. Gérez votre conformité, sécurisez vos traitements et démontrez votre responsabilité face à l'ARTCI.</p>
+  <div class="hero-btns">
+    <a href="https://platform.lecorrespondant.ci" class="btn-primary">
+      🚀 Accéder à la plateforme
+    </a>
+    <a href="#modules" class="btn-secondary">Découvrir les modules</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Modules de conformité</div></div>
+    <div class="stat"><div class="stat-num">89</div><div class="stat-label">Questions d'évaluation</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Conforme ARTCI</div></div>
+    <div class="stat"><div class="stat-num">CI</div><div class="stat-label">Hébergé en Côte d'Ivoire</div></div>
+  </div>
+
+  <!-- SLIDER -->
+  <div style="max-width:900px;margin:0 auto;padding:0 5%">
+    <div style="position:relative;overflow:hidden;background:rgba(255,255,255,0.07);border-radius:20px;border:1px solid rgba(255,255,255,0.15);margin-top:48px">
+      <div id="slides" style="display:flex;transition:transform .7s cubic-bezier(.4,0,.2,1)">
+
+        <!-- Slide 1 : Tableau de bord -->
+        <div style="min-width:100%;display:flex;align-items:center;gap:40px;padding:40px 48px">
+          <div style="flex:1;color:#fff;text-align:left">
+            <div style="display:inline-block;background:rgba(239,159,39,.2);color:#EF9F27;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:12px;margin-bottom:14px">Tableau de bord</div>
+            <div style="font-size:clamp(20px,2.5vw,28px);font-weight:800;line-height:1.3;margin-bottom:12px">Vue globale de<br>votre conformité</div>
+            <div style="font-size:14px;color:rgba(255,255,255,.8);line-height:1.7">Indicateurs clés, alertes actives et état de vos modules en un seul coup d'œil. Naviguez vers n'importe quel module en un clic.</div>
+          </div>
+          <div style="flex:0 0 260px">
+            <div style="background:#1F4E79;border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,.15)">
+              <div style="font-size:10px;font-weight:700;color:#fff;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.15)">📊 Tableau de bord DPO</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+                <div style="background:rgba(255,255,255,.1);border-radius:8px;padding:10px"><div style="font-size:22px;font-weight:800;color:#EF9F27">12</div><div style="font-size:9px;color:rgba(255,255,255,.7)">Traitements</div></div>
+                <div style="background:rgba(255,255,255,.1);border-radius:8px;padding:10px"><div style="font-size:22px;font-weight:800;color:#EF9F27">87%</div><div style="font-size:9px;color:rgba(255,255,255,.7)">Conformité</div></div>
+                <div style="background:rgba(255,255,255,.1);border-radius:8px;padding:10px"><div style="font-size:22px;font-weight:800;color:#E24B4A">3</div><div style="font-size:9px;color:rgba(255,255,255,.7)">Alertes</div></div>
+                <div style="background:rgba(255,255,255,.1);border-radius:8px;padding:10px"><div style="font-size:22px;font-weight:800;color:#1D9E75">0</div><div style="font-size:9px;color:rgba(255,255,255,.7)">Violations</div></div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:5px">
+                <div style="display:flex;align-items:center;gap:8px;font-size:9px;color:rgba(255,255,255,.7)">M1<div style="flex:1;height:5px;background:rgba(255,255,255,.1);border-radius:3px"><div style="width:87%;height:100%;background:#EF9F27;border-radius:3px"></div></div>87%</div>
+                <div style="display:flex;align-items:center;gap:8px;font-size:9px;color:rgba(255,255,255,.7)">M2<div style="flex:1;height:5px;background:rgba(255,255,255,.1);border-radius:3px"><div style="width:100%;height:100%;background:#1D9E75;border-radius:3px"></div></div>100%</div>
+                <div style="display:flex;align-items:center;gap:8px;font-size:9px;color:rgba(255,255,255,.7)">M8<div style="flex:1;height:5px;background:rgba(255,255,255,.1);border-radius:3px"><div style="width:60%;height:100%;background:#E24B4A;border-radius:3px"></div></div>60%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 : Registre -->
+        <div style="min-width:100%;display:flex;align-items:center;gap:40px;padding:40px 48px">
+          <div style="flex:1;color:#fff;text-align:left">
+            <div style="display:inline-block;background:rgba(239,159,39,.2);color:#EF9F27;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:12px;margin-bottom:14px">Module 2</div>
+            <div style="font-size:clamp(20px,2.5vw,28px);font-weight:800;line-height:1.3;margin-bottom:12px">Registre des<br>traitements ARTCI</div>
+            <div style="font-size:14px;color:rgba(255,255,255,.8);line-height:1.7">Enregistrez tous vos traitements DCP et exportez au format officiel ARTCI (17 colonnes) en un seul clic.</div>
+          </div>
+          <div style="flex:0 0 260px">
+            <div style="background:#1F4E79;border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,.15)">
+              <div style="font-size:10px;font-weight:700;color:#fff;margin-bottom:10px">📋 Registre des traitements</div>
+              <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px">
+                <div style="display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:9px;color:rgba(255,255,255,.8)"><span style="background:rgba(29,158,117,.3);color:#5DCAA5;padding:2px 6px;border-radius:8px;font-size:8px;font-weight:700">Actif</span>Gestion RH — Paie</div>
+                <div style="display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:9px;color:rgba(255,255,255,.8)"><span style="background:rgba(29,158,117,.3);color:#5DCAA5;padding:2px 6px;border-radius:8px;font-size:8px;font-weight:700">Actif</span>Fichier clients CRM</div>
+                <div style="display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:9px;color:rgba(255,255,255,.8)"><span style="background:rgba(239,159,39,.2);color:#EF9F27;padding:2px 6px;border-radius:8px;font-size:8px;font-weight:700">Révision</span>Vidéosurveillance</div>
+                <div style="display:flex;align-items:center;gap:6px;padding:5px 0;font-size:9px;color:rgba(255,255,255,.8)"><span style="background:rgba(29,158,117,.3);color:#5DCAA5;padding:2px 6px;border-radius:8px;font-size:8px;font-weight:700">Actif</span>Newsletter marketing</div>
+              </div>
+              <div style="background:#EF9F27;border-radius:8px;padding:8px;font-size:9px;color:#fff;font-weight:700;text-align:center">📊 Exporter Excel — Format ARTCI</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 : Alertes -->
+        <div style="min-width:100%;display:flex;align-items:center;gap:40px;padding:40px 48px">
+          <div style="flex:1;color:#fff;text-align:left">
+            <div style="display:inline-block;background:rgba(239,159,39,.2);color:#EF9F27;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:12px;margin-bottom:14px">Alertes réglementaires</div>
+            <div style="font-size:clamp(20px,2.5vw,28px);font-weight:800;line-height:1.3;margin-bottom:12px">Ne manquez aucune<br>échéance légale</div>
+            <div style="font-size:14px;color:rgba(255,255,255,.8);line-height:1.7">Alertes automatiques H+24/H+72 pour les violations, J-3/J-7 pour les droits, 30 jours avant les dépassements de conservation.</div>
+          </div>
+          <div style="flex:0 0 260px">
+            <div style="background:#1F4E79;border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,.15)">
+              <div style="font-size:10px;font-weight:700;color:#fff;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between">🔔 Alertes actives<span style="background:rgba(226,75,74,.25);color:#F09595;font-size:8px;padding:2px 8px;border-radius:8px">3 urgentes</span></div>
+              <div style="border-radius:6px;padding:8px;margin-bottom:6px;border-left:3px solid #E24B4A;background:rgba(226,75,74,.15)">
+                <div style="font-size:9px;font-weight:700;color:#fff;margin-bottom:2px">🚨 Violation H+72 dépassé</div>
+                <div style="font-size:8px;color:rgba(255,255,255,.65)">Notification ARTCI requise</div>
+              </div>
+              <div style="border-radius:6px;padding:8px;margin-bottom:6px;border-left:3px solid #EF9F27;background:rgba(239,159,39,.12)">
+                <div style="font-size:9px;font-weight:700;color:#fff;margin-bottom:2px">⚠ Droit J-3 — M. Koné Adama</div>
+                <div style="font-size:8px;color:rgba(255,255,255,.65)">Demande d'accès — 3 jours</div>
+              </div>
+              <div style="border-radius:6px;padding:8px;border-left:3px solid #1D9E75;background:rgba(29,158,117,.12)">
+                <div style="font-size:9px;font-weight:700;color:#fff;margin-bottom:2px">📄 Contrat expiré — DataPro CI</div>
+                <div style="font-size:8px;color:rgba(255,255,255,.65)">Sous-traitant — Renouvellement</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4 : Rapport -->
+        <div style="min-width:100%;display:flex;align-items:center;gap:40px;padding:40px 48px">
+          <div style="flex:1;color:#fff;text-align:left">
+            <div style="display:inline-block;background:rgba(239,159,39,.2);color:#EF9F27;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:12px;margin-bottom:14px">Module 9</div>
+            <div style="font-size:clamp(20px,2.5vw,28px);font-weight:800;line-height:1.3;margin-bottom:12px">Rapport annuel CPD<br>généré en 1 clic</div>
+            <div style="font-size:14px;color:rgba(255,255,255,.8);line-height:1.7">Générez automatiquement votre rapport annuel au format Word conforme au modèle officiel ARTCI, prêt à signer et soumettre.</div>
+          </div>
+          <div style="flex:0 0 260px">
+            <div style="background:#1F4E79;border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,.15)">
+              <div style="background:rgba(255,255,255,.95);border-radius:8px;padding:12px;margin-bottom:10px">
+                <div style="font-size:8px;font-weight:800;color:#1F4E79;margin-bottom:4px">LE CORRESPONDANT</div>
+                <div style="font-size:9px;font-weight:700;color:#1a1a1a;margin-bottom:8px">Rapport annuel CPD 2025</div>
+                <div style="height:3px;background:#e2e8f0;border-radius:2px;margin-bottom:3px;width:90%"></div>
+                <div style="height:3px;background:#e2e8f0;border-radius:2px;margin-bottom:3px;width:80%"></div>
+                <div style="height:3px;background:#e2e8f0;border-radius:2px;margin-bottom:3px;width:60%"></div>
+                <div style="height:3px;background:#e2e8f0;border-radius:2px;width:90%"></div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px">
+                <div style="font-size:9px;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:6px">✅ Introduction rédigée</div>
+                <div style="font-size:9px;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:6px">✅ Responsable du traitement</div>
+                <div style="font-size:9px;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:6px">✅ Mesures techniques</div>
+                <div style="font-size:9px;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:6px">✅ État de conformité</div>
+              </div>
+              <div style="background:rgba(255,255,255,.1);border-radius:6px;padding:8px;font-size:9px;color:#fff;text-align:center">📄 Générer DOCX ARTCI</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 5 : Sécurité -->
+        <div style="min-width:100%;display:flex;align-items:center;gap:40px;padding:40px 48px">
+          <div style="flex:1;color:#fff;text-align:left">
+            <div style="display:inline-block;background:rgba(239,159,39,.2);color:#EF9F27;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:12px;margin-bottom:14px">Sécurité</div>
+            <div style="font-size:clamp(20px,2.5vw,28px);font-weight:800;line-height:1.3;margin-bottom:12px">Vos données protégées<br>&amp; hébergées en CI</div>
+            <div style="font-size:14px;color:rgba(255,255,255,.8);line-height:1.7">Authentification MFA, chiffrement des données, hébergement sur serveur basé en Côte d'Ivoire. Vos données restent souveraines.</div>
+          </div>
+          <div style="flex:0 0 260px">
+            <div style="background:#1F4E79;border-radius:14px;padding:20px;border:1px solid rgba(255,255,255,.15)">
+              <div style="width:80px;height:80px;border-radius:50%;border:3px solid #EF9F27;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:32px">🔐</div>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border-radius:6px;padding:6px 10px;font-size:9px;color:rgba(255,255,255,.85)"><div style="width:16px;height:16px;border-radius:50%;background:rgba(29,158,117,.3);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0">✓</div>Authentification MFA (TOTP)</div>
+                <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border-radius:6px;padding:6px 10px;font-size:9px;color:rgba(255,255,255,.85)"><div style="width:16px;height:16px;border-radius:50%;background:rgba(29,158,117,.3);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0">✓</div>Chiffrement PostgreSQL</div>
+                <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border-radius:6px;padding:6px 10px;font-size:9px;color:rgba(255,255,255,.85)"><div style="width:16px;height:16px;border-radius:50%;background:rgba(29,158,117,.3);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0">✓</div>Hébergement Côte d'Ivoire</div>
+                <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border-radius:6px;padding:6px 10px;font-size:9px;color:rgba(255,255,255,.85)"><div style="width:16px;height:16px;border-radius:50%;background:rgba(29,158,117,.3);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0">✓</div>Isolation multi-organisation</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contrôles -->
+      <button onclick="changeSlide(-1)" style="position:absolute;top:50%;left:16px;transform:translateY(-50%);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:10;transition:.2s">&#8249;</button>
+      <button onclick="changeSlide(1)" style="position:absolute;top:50%;right:16px;transform:translateY(-50%);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:10;transition:.2s">&#8250;</button>
+    </div>
+    <!-- Dots -->
+    <div id="slider-dots" style="display:flex;justify-content:center;gap:8px;margin-top:16px"></div>
+  </div>
+
+  <script>
+    var sliderCur = 0;
+    var sliderTotal = 5;
+    var sliderEl = document.getElementById('slides');
+    var dotsEl = document.getElementById('slider-dots');
+    for(var i=0;i<sliderTotal;i++){
+      var d = document.createElement('button');
+      d.style.cssText = 'width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);border:none;cursor:pointer;transition:.3s;padding:0';
+      if(i===0){d.style.background='#EF9F27';d.style.width='24px';d.style.borderRadius='4px'}
+      d.setAttribute('data-i',i);
+      d.onclick = function(){sliderGoTo(parseInt(this.getAttribute('data-i')));};
+      dotsEl.appendChild(d);
+    }
+    function sliderGoTo(n){
+      sliderCur=(n+sliderTotal)%sliderTotal;
+      sliderEl.style.transform='translateX(-'+sliderCur*100+'%)';
+      document.querySelectorAll('#slider-dots button').forEach(function(d,i){
+        d.style.background=i===sliderCur?'#EF9F27':'rgba(255,255,255,.3)';
+        d.style.width=i===sliderCur?'24px':'8px';
+        d.style.borderRadius=i===sliderCur?'4px':'50%';
+      });
+    }
+    function changeSlide(dir){sliderGoTo(sliderCur+dir);}
+    setInterval(function(){sliderGoTo(sliderCur+1);},4500);
+  </script>
+
+</section>
+
+<!-- MODULES -->
+<section class="modules" id="modules">
+  <div class="container">
+    <div class="section-label">Modules fonctionnels</div>
+    <h2 class="section-title">Tout ce dont votre DPO a besoin</h2>
+    <p class="section-sub">10 modules couvrant l'intégralité de vos obligations DCP selon la loi ivoirienne.</p>
+    <div class="modules-grid">
+      <div class="module-card">
+        <div class="module-icon">✅</div>
+        <div class="module-num">Module 1</div>
+        <div class="module-title">Évaluation de conformité</div>
+        <div class="module-desc">89 questions sur 8 principes ARTCI avec plan d'action correctif automatique.</div>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">📋</div>
+        <div class="module-num">Module 2</div>
+        <div class="module-title">Registre des traitements</div>
+        <div class="module-desc">Registre officiel exportable en Excel au format ARTCI (17 colonnes).</div>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">⚖️</div>
+        <div class="module-num">Module 3</div>
+        <div class="module-title">Bases légales & Consentements</div>
+        <div class="module-desc">Traitements groupés par base légale et gestion des consentements.</div>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">👤</div>
+        <div class="module-num">Module 4</div>
+        <div class="module-title">Droits des personnes</div>
+        <div class="module-desc">Suivi des demandes d'accès, rectification, opposition avec alertes J-7 et J-3.</div>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">🗓️</div>
+        <div class="module-num">Module 5</div>
+        <div class="module-title">Conservation des données</div>
+        <div class="module-desc">Contrôle des durées de conservation avec alertes 30 jours avant dépassement.</div>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">🌍</div>
+        <div class="module-num">Module 6</div>
+        <div class="module-title">Transferts hors CEDEAO</div>
+        <div class="module-desc">Registre des transferts vers des pays hors zone CEDEAO.</div>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">🤝</div>
+        <div class="module-num">Module 7</div>
+        <div class="module-title">Sous-traitants</div>
+        <div class="module-desc">Gestion des contrats avec alertes automatiques à l'expiration.</div>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">🚨</div>
+        <div class="module-num">Module 8</div>
+        <div class="module-title">Violations & incidents</div>
+        <div class="module-desc">Déclaration et suivi avec alertes réglementaires H+24, H+48, H+72.</div>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">📄</div>
+        <div class="module-num">Module 9</div>
+        <div class="module-title">Rapport annuel CPD</div>
+        <div class="module-desc">Génération automatique du rapport annuel ARTCI au format Word officiel.</div>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">📁</div>
+        <div class="module-num">Module 10</div>
+        <div class="module-title">Documentation</div>
+        <div class="module-desc">Bibliothèque centralisée de vos politiques, chartes et procédures DCP.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="section-label">Fonctionnalités clés</div>
+    <h2 class="section-title">Conçu pour les DPOs ivoiriens</h2>
+    <div class="features-grid">
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-icon">🔔</div>
+          <div>
+            <div class="feature-title">Alertes réglementaires automatiques</div>
+            <div class="feature-desc">Notifications quotidiennes sur les échéances critiques : violations H+72, droits J-3, contrats expirés.</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">👥</div>
+          <div>
+            <div class="feature-title">Multi-utilisateurs & rôles</div>
+            <div class="feature-desc">Gérez votre équipe avec des profils Admin, DPO et Lecteur. Chaque organisation est isolée.</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔐</div>
+          <div>
+            <div class="feature-title">Sécurité renforcée (MFA)</div>
+            <div class="feature-desc">Authentification à deux facteurs, chiffrement des données, hébergement en Côte d'Ivoire.</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📤</div>
+          <div>
+            <div class="feature-title">Export aux formats ARTCI</div>
+            <div class="feature-desc">Registre en Excel 17 colonnes et rapport annuel CPD en Word, prêts à soumettre à l'ARTCI.</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">💾</div>
+          <div>
+            <div class="feature-title">Sauvegarde & restauration</div>
+            <div class="feature-desc">Sauvegarde complète de vos données au format JSON, avec restauration en un clic.</div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-visual">
+        <div>
+          <div class="visual-title">Tableau de bord DPO</div>
+          <div class="visual-sub">Vue en temps réel de votre conformité</div>
+          <div class="visual-stats">
+            <div class="v-stat"><div class="v-stat-num">12</div><div class="v-stat-label">Traitements actifs</div></div>
+            <div class="v-stat"><div class="v-stat-num">3</div><div class="v-stat-label">Alertes en cours</div></div>
+            <div class="v-stat"><div class="v-stat-num">87%</div><div class="v-stat-label">Score conformité</div></div>
+            <div class="v-stat"><div class="v-stat-num">0</div><div class="v-stat-label">Violations ouvertes</div></div>
+          </div>
+        </div>
+        <div class="visual-modules">
+          <div class="v-module">✅ Évaluation M1 <span class="v-badge">Complétée</span></div>
+          <div class="v-module">📋 Registre M2 <span class="v-badge">À jour</span></div>
+          <div class="v-module">🚨 Violations M8 <span class="v-badge">0 active</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFORMITE -->
+<section class="conformite" id="conformite">
+  <div class="container">
+    <div class="section-label">Cadre réglementaire</div>
+    <h2 class="section-title">100% conforme à la loi ivoirienne</h2>
+    <p class="section-sub">LE CORRESPONDANT est entièrement aligné sur les exigences de la Loi n°2013-450 et les directives de l'ARTCI.</p>
+    <div class="loi-grid">
+      <div class="loi-card">
+        <div class="loi-icon">🏛️</div>
+        <div class="loi-title">Loi n°2013-450</div>
+        <div class="loi-desc">Conforme à la loi du 19 juin 2013 relative à la protection des données à caractère personnel en Côte d'Ivoire.</div>
+      </div>
+      <div class="loi-card">
+        <div class="loi-icon">📡</div>
+        <div class="loi-title">ARTCI</div>
+        <div class="loi-desc">Aligné sur les directives de l'Autorité de Régulation des Télécommunications/TIC de Côte d'Ivoire.</div>
+      </div>
+      <div class="loi-card">
+        <div class="loi-icon">🗺️</div>
+        <div class="loi-title">Hébergement local</div>
+        <div class="loi-desc">Données hébergées sur des serveurs basés en Côte d'Ivoire, garantissant la souveraineté numérique.</div>
+      </div>
+      <div class="loi-card">
+        <div class="loi-icon">🔒</div>
+        <div class="loi-title">8 principes ARTCI</div>
+        <div class="loi-desc">Évaluation couvrant les 8 principes fondamentaux : légitimité, proportionnalité, conservation, transparence...</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">Contactez le Cabinet SMS</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Téléphone</div>
+            <div class="contact-val">+225 07 88 88 67 67</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-val"><a href="mailto:contact@sms-ci.net" style="color:var(--blue)">contact@sms-ci.net</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🌍</div>
+          <div>
+            <div class="contact-label">Localisation</div>
+            <div class="contact-val">Abidjan, Côte d'Ivoire</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">⚖️</div>
+          <div>
+            <div class="contact-label">Autorité de contrôle</div>
+            <div class="contact-val">ARTCI — Abidjan</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-cta">
+        <h3>Prêt à commencer ?</h3>
+        <p>Accédez à votre espace de conformité DCP et commencez à gérer vos traitements dès aujourd'hui.</p>
+        <a href="https://platform.lecorrespondant.ci" class="cta-btn">Accéder à la plateforme →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">LE CORRESPONDANT</div>
+  <div class="footer-sub">Plateforme de conformité DCP — Loi n°2013-450 — ARTCI Côte d'Ivoire</div>
+  <div class="footer-links">
+    <a href="#modules">Modules</a>
+    <a href="#conformite">Conformité</a>
+    <a href="#contact">Contact</a>
+    <a href="https://platform.lecorrespondant.ci">Accéder à la plateforme</a>
+  </div>
+  <div class="footer-copy">© 2026 Cabinet SMS — contact@sms-ci.net — +225 07 88 88 67 67</div>
+</footer>
+
+</body>
+</html>
