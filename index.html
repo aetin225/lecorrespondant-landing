@@ -3,128 +3,287 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LE CORRESPONDANT — Plateforme de conformité DCP</title>
-<meta name="description" content="LE CORRESPONDANT est la solution SaaS de conformité DCP pour les organisations en Côte d'Ivoire. Conforme à la Loi n°2013-450 et supervisé par l'ARTCI.">
+<title>LE CORRESPONDANT — Plateforme de conformité DCP · ARTCI Côte d'Ivoire</title>
+<meta name="description" content="La plateforme de référence pour la conformité DCP en Côte d'Ivoire. Conforme à la Loi n°2013-450, supervisée par l'ARTCI.">
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  :root{
-    --blue:#1F4E79;--blue-light:#2E75B6;--blue-dark:#0d3556;
-    --orange:#EF9F27;--orange-dark:#C55A11;
-    --bg:#f8fafc;--white:#ffffff;--gray:#f1f5f9;--text:#1a1a1a;--muted:#64748b;
-  }
-  body{font-family:system-ui,-apple-system,sans-serif;color:var(--text);background:var(--white);line-height:1.6}
-  a{text-decoration:none;color:inherit}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-  /* NAV */
-  nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);border-bottom:1px solid #e2e8f0;padding:0 5%}
-  .nav-inner{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;height:68px}
-  .logo{display:flex;align-items:center;gap:12px}
-  .logo-icon{width:38px;height:42px}
-  .logo-text{font-size:17px;font-weight:700;color:var(--blue);letter-spacing:-0.3px}
-  .logo-sub{font-size:11px;color:var(--muted);letter-spacing:0.5px}
-  .nav-links{display:flex;align-items:center;gap:8px}
-  .nav-links a{padding:8px 16px;border-radius:8px;font-size:14px;font-weight:500;color:var(--muted);transition:all .15s}
-  .nav-links a:hover{color:var(--blue);background:#f0f6ff}
-  .nav-cta{background:var(--blue)!important;color:#fff!important;padding:9px 20px!important;border-radius:8px}
-  .nav-cta:hover{background:var(--blue-light)!important}
+:root {
+  --blue: #1F4E79;
+  --blue-mid: #2E75B6;
+  --blue-light: #4A9FD4;
+  --blue-dark: #0d2d47;
+  --orange: #EF9F27;
+  --orange-dark: #C55A11;
+  --white: #ffffff;
+  --bg: #060d17;
+  --surface: #0d1f35;
+  --surface2: #112340;
+  --border: rgba(255,255,255,0.08);
+  --text: #e8f0f8;
+  --muted: #7a9ab8;
+}
 
-  /* HERO */
-  .hero{background:linear-gradient(160deg,var(--blue-dark) 0%,var(--blue) 55%,#1a6ba0 100%);color:#fff;padding:100px 5% 120px;text-align:center;position:relative;overflow:hidden}
-  .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
-  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);padding:6px 16px;border-radius:20px;font-size:13px;margin-bottom:28px;backdrop-filter:blur(4px)}
-  .hero h1{font-size:clamp(36px,5vw,60px);font-weight:800;line-height:1.15;margin-bottom:24px;letter-spacing:-1px}
-  .hero h1 span{color:var(--orange)}
-  .hero p{font-size:18px;color:rgba(255,255,255,0.85);max-width:620px;margin:0 auto 40px;line-height:1.7}
-  .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-  .btn-primary{background:var(--orange);color:#fff;padding:14px 32px;border-radius:10px;font-size:16px;font-weight:700;transition:all .15s;display:inline-flex;align-items:center;gap:8px}
-  .btn-primary:hover{background:var(--orange-dark);transform:translateY(-1px)}
-  .btn-secondary{background:rgba(255,255,255,0.12);color:#fff;padding:14px 32px;border-radius:10px;font-size:16px;font-weight:600;border:1px solid rgba(255,255,255,0.25);transition:all .15s;backdrop-filter:blur(4px)}
-  .btn-secondary:hover{background:rgba(255,255,255,0.2)}
-  .hero-stats{display:flex;gap:40px;justify-content:center;margin-top:64px;flex-wrap:wrap}
-  .stat{text-align:center}
-  .stat-num{font-size:32px;font-weight:800;color:var(--orange)}
-  .stat-label{font-size:13px;color:rgba(255,255,255,0.7);margin-top:4px}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
 
-  /* SECTION */
-  section{padding:80px 5%}
-  .container{max-width:1200px;margin:auto}
-  .section-label{display:inline-block;background:#e0f0ff;color:var(--blue);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px}
-  .section-title{font-size:clamp(28px,3.5vw,42px);font-weight:800;color:var(--text);line-height:1.2;margin-bottom:16px;letter-spacing:-0.5px}
-  .section-sub{font-size:17px;color:var(--muted);max-width:580px;line-height:1.7}
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 0 6%;
+  background: rgba(6, 13, 23, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: all .3s;
+}
+.nav-inner { max-width: 1200px; margin: auto; display: flex; align-items: center; justify-content: space-between; height: 70px; }
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-icon { width: 36px; height: 40px; }
+.logo-name { font-size: 15px; font-weight: 800; letter-spacing: -.3px; color: var(--white); }
+.logo-sub { font-size: 9px; color: var(--muted); letter-spacing: .8px; text-transform: uppercase; margin-top: 1px; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a { padding: 7px 14px; border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--muted); transition: .2s; }
+.nav-links a:hover { color: var(--white); background: rgba(255,255,255,.06); }
+.nav-cta {
+  background: linear-gradient(135deg, var(--orange), var(--orange-dark)) !important;
+  color: var(--white) !important; padding: 9px 20px !important;
+  border-radius: 10px; font-weight: 700 !important; font-size: 13px !important;
+  box-shadow: 0 4px 20px rgba(239,159,39,.3);
+  transition: all .2s !important;
+}
+.nav-cta:hover { transform: translateY(-1px) !important; box-shadow: 0 6px 28px rgba(239,159,39,.45) !important; }
 
-  /* MODULES */
-  .modules{background:var(--gray)}
-  .modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:48px}
-  .module-card{background:#fff;border-radius:14px;padding:28px;border:1px solid #e2e8f0;transition:all .2s;position:relative;overflow:hidden}
-  .module-card:hover{transform:translateY(-3px);border-color:var(--blue-light);box-shadow:0 12px 32px rgba(31,78,121,0.12)}
-  .module-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);border-radius:14px 14px 0 0;transform:scaleX(0);transition:.2s;transform-origin:left}
-  .module-card:hover::before{transform:scaleX(1)}
-  .module-num{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--orange);text-transform:uppercase;margin-bottom:10px}
-  .module-title{font-size:17px;font-weight:700;color:var(--blue);margin-bottom:8px}
-  .module-desc{font-size:14px;color:var(--muted);line-height:1.6}
-  .module-icon{font-size:28px;margin-bottom:14px}
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  padding: 120px 6% 80px;
+  position: relative; overflow: hidden;
+  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(31,78,121,.6) 0%, transparent 70%),
+              radial-gradient(ellipse 60% 40% at 80% 80%, rgba(239,159,39,.08) 0%, transparent 60%),
+              var(--bg);
+}
+.hero-grid { position: absolute; inset: 0; opacity: .12; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 60px 60px; }
+.hero-glow { position: absolute; top: 20%; left: 50%; transform: translateX(-50%); width: 800px; height: 400px; background: radial-gradient(ellipse, rgba(31,78,121,.4), transparent 70%); pointer-events: none; }
+.hero-inner { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(239,159,39,.12); border: 1px solid rgba(239,159,39,.3);
+  padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  color: var(--orange); margin-bottom: 24px; width: fit-content;
+}
+.hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+.hero h1 { font-size: clamp(36px, 4.5vw, 58px); font-weight: 900; line-height: 1.1; letter-spacing: -2px; margin-bottom: 20px; }
+.hero h1 .grad { background: linear-gradient(135deg, var(--white) 0%, var(--blue-light) 50%, var(--orange) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero p { font-size: 16px; color: var(--muted); line-height: 1.75; margin-bottom: 36px; max-width: 480px; }
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 56px; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+  color: var(--white); padding: 14px 28px; border-radius: 12px;
+  font-size: 15px; font-weight: 700;
+  box-shadow: 0 8px 32px rgba(239,159,39,.35);
+  transition: all .2s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(239,159,39,.5); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.06); border: 1px solid var(--border);
+  color: var(--text); padding: 14px 28px; border-radius: 12px;
+  font-size: 15px; font-weight: 600; transition: all .2s;
+}
+.btn-ghost:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.15); }
+.hero-trust { display: flex; align-items: center; gap: 16px; }
+.trust-avatars { display: flex; }
+.trust-av { width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--bg); background: linear-gradient(135deg, var(--blue-mid), var(--blue-light)); margin-left: -8px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; }
+.trust-av:first-child { margin-left: 0; }
+.trust-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.trust-text strong { color: var(--text); }
 
-  /* FEATURES */
-  .features-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:60px}
-  @media(max-width:768px){.features-grid{grid-template-columns:1fr}}
-  .feature-list{display:flex;flex-direction:column;gap:28px}
-  .feature-item{display:flex;gap:16px;align-items:flex-start}
-  .feature-icon{width:44px;height:44px;background:#e0f0ff;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-  .feature-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:5px}
-  .feature-desc{font-size:14px;color:var(--muted);line-height:1.6}
-  .feature-visual{background:linear-gradient(135deg,var(--blue),var(--blue-light));border-radius:20px;padding:40px;color:#fff;min-height:400px;display:flex;flex-direction:column;justify-content:space-between}
-  .visual-title{font-size:20px;font-weight:700;margin-bottom:8px}
-  .visual-sub{font-size:14px;opacity:.8;margin-bottom:32px}
-  .visual-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .v-stat{background:rgba(255,255,255,0.12);border-radius:10px;padding:16px}
-  .v-stat-num{font-size:28px;font-weight:800;color:var(--orange)}
-  .v-stat-label{font-size:12px;opacity:.8;margin-top:4px}
-  .visual-modules{display:flex;flex-direction:column;gap:10px}
-  .v-module{background:rgba(255,255,255,0.1);border-radius:8px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;font-size:14px}
-  .v-badge{background:var(--orange);padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
+/* Dashboard visuel */
+.hero-visual { position: relative; }
+.dashboard-card {
+  background: linear-gradient(145deg, var(--surface), var(--surface2));
+  border: 1px solid var(--border); border-radius: 20px; padding: 24px;
+  box-shadow: 0 40px 100px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.03);
+  position: relative; overflow: hidden;
+}
+.dashboard-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent); }
+.db-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.db-title { font-size: 13px; font-weight: 700; color: var(--text); }
+.db-dots { display: flex; gap: 5px; }
+.db-dot { width: 10px; height: 10px; border-radius: 50%; }
+.db-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+.db-stat { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.db-stat-n { font-size: 24px; font-weight: 800; }
+.db-stat-l { font-size: 10px; color: var(--muted); margin-top: 3px; }
+.db-score { margin-bottom: 18px; }
+.db-score-header { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+.db-bar { height: 8px; background: rgba(255,255,255,.06); border-radius: 4px; overflow: hidden; }
+.db-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--blue-mid), var(--blue-light)); animation: barAnim 1.5s ease-out; }
+@keyframes barAnim { from { width: 0; } }
+.db-alerts { display: flex; flex-direction: column; gap: 6px; }
+.db-alert { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; font-size: 12px; }
+.db-alert-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.db-alert-text { flex: 1; color: var(--text); }
+.db-alert-time { color: var(--muted); font-size: 10px; }
+.float-badge {
+  position: absolute; background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 12px; padding: 10px 14px; display: flex; align-items: center; gap: 10px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.4); font-size: 12px; white-space: nowrap;
+}
+.fb-1 { top: -20px; right: -20px; }
+.fb-2 { bottom: -16px; left: -20px; }
+.fb-icon { font-size: 20px; }
 
-  /* CONFORMITE */
-  .conformite{background:var(--blue);color:#fff;text-align:center}
-  .conformite .section-title{color:#fff}
-  .conformite .section-sub{color:rgba(255,255,255,0.8);margin:0 auto}
-  .conformite .section-label{background:rgba(255,255,255,0.15);color:#fff}
-  .loi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:48px}
-  .loi-card{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:28px;backdrop-filter:blur(4px);transition:all .2s}
-  .loi-card:hover{background:rgba(255,255,255,0.15)}
-  .loi-icon{font-size:32px;margin-bottom:16px}
-  .loi-title{font-size:15px;font-weight:700;margin-bottom:8px}
-  .loi-desc{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.6}
+/* ===== STATS ===== */
+.stats { padding: 64px 6%; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.stats-inner { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+.stat-item { text-align: center; padding: 24px; border-right: 1px solid var(--border); }
+.stat-item:last-child { border-right: none; }
+.stat-num { font-size: 40px; font-weight: 900; background: linear-gradient(135deg, var(--white), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -1px; }
+.stat-label { font-size: 13px; color: var(--muted); margin-top: 6px; }
 
-  /* CONTACT */
-  .contact{background:var(--gray)}
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:48px}
-  @media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
-  .contact-info{display:flex;flex-direction:column;gap:24px}
-  .contact-item{display:flex;gap:16px;align-items:flex-start}
-  .contact-icon{width:48px;height:48px;background:var(--blue);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;color:#fff}
-  .contact-label{font-size:13px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
-  .contact-val{font-size:16px;font-weight:600;color:var(--text)}
-  .contact-cta{background:#fff;border-radius:16px;padding:40px;border:1px solid #e2e8f0;text-align:center}
-  .contact-cta h3{font-size:22px;font-weight:700;color:var(--blue);margin-bottom:12px}
-  .contact-cta p{color:var(--muted);margin-bottom:28px;font-size:15px}
-  .cta-btn{display:inline-block;background:var(--blue);color:#fff;padding:14px 32px;border-radius:10px;font-size:16px;font-weight:700;transition:all .15s}
-  .cta-btn:hover{background:var(--blue-light);transform:translateY(-1px)}
+/* ===== SECTION BASE ===== */
+section { padding: 96px 6%; }
+.section-inner { max-width: 1200px; margin: auto; }
+.section-label { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+.section-label::before { content: ''; width: 20px; height: 2px; background: var(--orange); border-radius: 1px; }
+.section-title { font-size: clamp(28px, 3.5vw, 44px); font-weight: 900; line-height: 1.15; letter-spacing: -1.5px; margin-bottom: 16px; }
+.section-sub { font-size: 16px; color: var(--muted); max-width: 520px; line-height: 1.75; }
 
-  /* FOOTER */
-  footer{background:var(--blue-dark);color:rgba(255,255,255,0.7);padding:40px 5%;text-align:center}
-  footer a{color:var(--orange)}
-  .footer-logo{font-size:20px;font-weight:800;color:#fff;margin-bottom:8px}
-  .footer-sub{font-size:13px;margin-bottom:24px}
-  .footer-links{display:flex;justify-content:center;gap:24px;margin-bottom:24px;flex-wrap:wrap}
-  .footer-links a{font-size:13px;color:rgba(255,255,255,0.6);transition:.15s}
-  .footer-links a:hover{color:#fff}
-  .footer-copy{font-size:12px;color:rgba(255,255,255,0.4)}
+/* ===== MODULES ===== */
+.modules-bg { background: radial-gradient(ellipse 60% 40% at 50% 100%, rgba(31,78,121,.2), transparent); }
+.modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 56px; }
+.module-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 28px; position: relative; overflow: hidden; transition: all .3s; cursor: default;
+}
+.module-card::after { content: ''; position: absolute; inset: 0; border-radius: 16px; opacity: 0; transition: .3s; background: radial-gradient(ellipse at 50% 0%, rgba(31,78,121,.3), transparent 70%); }
+.module-card:hover { border-color: rgba(46,117,182,.4); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,.3); }
+.module-card:hover::after { opacity: 1; }
+.module-num { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); margin-bottom: 14px; }
+.module-icon { font-size: 32px; margin-bottom: 14px; display: block; }
+.module-title { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.module-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+.module-tag { display: inline-block; margin-top: 14px; background: rgba(239,159,39,.1); border: 1px solid rgba(239,159,39,.2); color: var(--orange); font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
 
-  @media(max-width:640px){
-    .hero{padding:70px 5% 80px}
-    .hero-stats{gap:24px}
-    .nav-links a:not(.nav-cta){display:none}
-  }
+/* ===== FEATURES ===== */
+.features-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 64px; }
+.features-list { display: flex; flex-direction: column; gap: 0; }
+.feature-item { display: flex; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--border); cursor: pointer; transition: .2s; }
+.feature-item:last-child { border-bottom: none; }
+.feature-item:hover .feature-icon-wrap { background: rgba(31,78,121,.5); border-color: rgba(46,117,182,.4); }
+.feature-icon-wrap { width: 48px; height: 48px; background: rgba(31,78,121,.25); border: 1px solid rgba(46,117,182,.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; transition: .2s; }
+.feature-title { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.feature-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+.feature-visual { position: relative; }
+.terminal {
+  background: #020b14; border: 1px solid var(--border); border-radius: 16px;
+  overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,.5);
+}
+.terminal-header { display: flex; align-items: center; gap: 8px; padding: 14px 18px; background: var(--surface); border-bottom: 1px solid var(--border); }
+.t-dot { width: 12px; height: 12px; border-radius: 50%; }
+.terminal-title { font-size: 12px; color: var(--muted); margin-left: 8px; }
+.terminal-body { padding: 20px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.8; }
+.t-line { display: flex; gap: 8px; }
+.t-prompt { color: var(--orange); }
+.t-cmd { color: #7EC8E3; }
+.t-out { color: #5DCAA5; padding-left: 16px; }
+.t-comment { color: var(--muted); padding-left: 16px; }
+.t-warn { color: var(--orange); padding-left: 16px; }
+.t-err { color: #F09595; padding-left: 16px; }
+.t-blink { animation: blink 1s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* ===== CONFORMITE ===== */
+.conformite-section { background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(31,78,121,.15), transparent); }
+.conformite-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 56px; }
+.conformite-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+  padding: 32px 24px; text-align: center; transition: all .3s; position: relative; overflow: hidden;
+}
+.conformite-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue-mid), var(--orange)); transform: scaleX(0); transition: .3s; transform-origin: left; }
+.conformite-card:hover::before { transform: scaleX(1); }
+.conformite-card:hover { border-color: rgba(46,117,182,.3); transform: translateY(-4px); }
+.conf-icon { font-size: 40px; margin-bottom: 16px; display: block; }
+.conf-title { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+.conf-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+/* ===== CTA SECTION ===== */
+.cta-section {
+  padding: 80px 6%;
+  background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(31,78,121,.3), transparent);
+  border-top: 1px solid var(--border);
+}
+.cta-box {
+  max-width: 800px; margin: auto; text-align: center;
+  background: linear-gradient(145deg, var(--surface), var(--surface2));
+  border: 1px solid var(--border); border-radius: 24px; padding: 64px 48px;
+  position: relative; overflow: hidden;
+}
+.cta-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(239,159,39,.4), transparent); }
+.cta-box h2 { font-size: clamp(28px, 3.5vw, 40px); font-weight: 900; letter-spacing: -1.5px; margin-bottom: 16px; }
+.cta-box p { font-size: 16px; color: var(--muted); margin-bottom: 36px; line-height: 1.7; }
+
+/* ===== CONTACT ===== */
+.contact-section { border-top: 1px solid var(--border); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 56px; align-items: start; }
+.contact-info { display: flex; flex-direction: column; gap: 20px; }
+.contact-item { display: flex; gap: 16px; align-items: flex-start; padding: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; transition: .2s; }
+.contact-item:hover { border-color: rgba(46,117,182,.3); }
+.ci-icon { width: 44px; height: 44px; background: linear-gradient(135deg, var(--blue), var(--blue-mid)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.ci-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 4px; font-weight: 700; }
+.ci-val { font-size: 15px; font-weight: 600; color: var(--white); }
+.contact-cta-card {
+  background: linear-gradient(145deg, var(--surface), var(--surface2));
+  border: 1px solid var(--border); border-radius: 20px; padding: 40px;
+  text-align: center; position: sticky; top: 100px;
+}
+.contact-cta-card h3 { font-size: 22px; font-weight: 800; color: var(--white); margin-bottom: 12px; letter-spacing: -.5px; }
+.contact-cta-card p { font-size: 14px; color: var(--muted); margin-bottom: 28px; line-height: 1.7; }
+
+/* ===== FOOTER ===== */
+footer { padding: 48px 6%; border-top: 1px solid var(--border); }
+.footer-inner { max-width: 1200px; margin: auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
+.footer-left { display: flex; align-items: center; gap: 14px; }
+.footer-copy { font-size: 13px; color: var(--muted); }
+.footer-links { display: flex; gap: 6px; flex-wrap: wrap; }
+.footer-links a { font-size: 12px; color: var(--muted); padding: 5px 10px; border-radius: 6px; transition: .2s; }
+.footer-links a:hover { color: var(--white); background: rgba(255,255,255,.05); }
+.footer-artci { display: flex; align-items: center; gap: 8px; background: rgba(239,159,39,.08); border: 1px solid rgba(239,159,39,.2); border-radius: 20px; padding: 6px 14px; font-size: 11px; font-weight: 700; color: var(--orange); }
+
+/* ===== COOKIE BANNER ===== */
+#cookie-banner {
+  position: fixed; bottom: 24px; left: 24px; right: 24px; z-index: 9999; max-width: 560px;
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 16px;
+  padding: 24px; box-shadow: 0 20px 80px rgba(0,0,0,.6);
+  display: flex; flex-direction: column; gap: 16px;
+  animation: slideUp .4s ease-out;
+}
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.cb-title { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.cb-text { font-size: 13px; color: var(--muted); line-height: 1.65; }
+.cb-btns { display: flex; gap: 10px; }
+.cb-reject { flex: 1; padding: 10px; border-radius: 10px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: 13px; font-weight: 600; cursor: pointer; transition: .2s; }
+.cb-reject:hover { border-color: rgba(255,255,255,.2); color: var(--text); }
+.cb-accept { flex: 2; padding: 10px; border-radius: 10px; border: none; background: linear-gradient(135deg, var(--orange), var(--orange-dark)); color: white; font-size: 13px; font-weight: 700; cursor: pointer; transition: .2s; }
+.cb-accept:hover { box-shadow: 0 4px 20px rgba(239,159,39,.4); }
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .stat-item:nth-child(2) { border-right: none; }
+  .features-layout { grid-template-columns: 1fr; }
+  .feature-visual { display: none; }
+  .conformite-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .nav-links a:not(.nav-cta) { display: none; }
+}
 </style>
 </head>
 <body>
@@ -134,279 +293,204 @@
   <div class="nav-inner">
     <a href="/" class="logo">
       <svg class="logo-icon" viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 5 L90 22 L90 68 Q90 95 50 108 Q10 95 10 68 L10 22 Z" fill="#DEEAF1"/>
-        <path d="M50 14 L82 29 L82 68 Q82 90 50 101 Q18 90 18 68 L18 29 Z" fill="#2E75B6"/>
-        <path d="M28 58 L44 74 L72 42" fill="none" stroke="white" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M50 5 L90 22 L90 68 Q90 95 50 108 Q10 95 10 68 L10 22 Z" fill="rgba(255,255,255,0.06)"/>
+        <path d="M50 12 L84 28 L84 68 Q84 91 50 103 Q16 91 16 68 L16 28 Z" fill="rgba(46,117,182,0.4)"/>
+        <path d="M26 57 L43 74 L74 38" fill="none" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="35" cy="11" r="4" fill="#EF9F27" opacity=".9"/>
+        <circle cx="50" cy="5" r="5" fill="#EF9F27"/>
+        <circle cx="65" cy="11" r="4" fill="#EF9F27" opacity=".9"/>
       </svg>
       <div>
-        <div class="logo-text">LE CORRESPONDANT</div>
-        <div class="logo-sub">ARTCI · Loi 2013-450 · Côte d'Ivoire</div>
+        <div class="logo-name">LE CORRESPONDANT</div>
+        <div class="logo-sub">ARTCI · Loi 2013-450 · CI</div>
       </div>
     </a>
     <div class="nav-links">
       <a href="#modules">Modules</a>
+      <a href="#features">Fonctionnalités</a>
       <a href="#conformite">Conformité</a>
       <a href="#contact">Contact</a>
-      <a href="https://platform.lecorrespondant.ci" class="nav-cta">Accéder à la plateforme →</a>
+      <a href="https://platform.lecorrespondant.ci" class="nav-cta">Accéder →</a>
     </div>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">
-    🛡 Conforme Loi n°2013-450 · ARTCI Côte d'Ivoire
-  </div>
-  <h1>La conformité DCP,<br><span>simplifiée pour vous</span></h1>
-  <p>LE CORRESPONDANT centralise tous vos processus de protection des données personnelles. Gérez votre conformité, sécurisez vos traitements et démontrez votre responsabilité face à l'ARTCI.</p>
-  <div class="hero-btns">
-    <a href="https://platform.lecorrespondant.ci" class="btn-primary">
-      🚀 Accéder à la plateforme
-    </a>
-    <a href="#modules" class="btn-secondary">Découvrir les modules</a>
-  </div>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Modules de conformité</div></div>
-    <div class="stat"><div class="stat-num">89</div><div class="stat-label">Questions d'évaluation</div></div>
-    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Conforme ARTCI</div></div>
-    <div class="stat"><div class="stat-num">CI</div><div class="stat-label">Hébergé en Côte d'Ivoire</div></div>
-  </div>
-
-  <!-- SLIDER -->
-  <div style="max-width:900px;margin:0 auto;padding:0 5%">
-    <div style="position:relative;overflow:hidden;background:rgba(255,255,255,0.07);border-radius:20px;border:1px solid rgba(255,255,255,0.15);margin-top:48px">
-      <div id="slides" style="display:flex;transition:transform .7s cubic-bezier(.4,0,.2,1)">
-
-        <!-- Slide 1 : Tableau de bord -->
-        <div style="min-width:100%;display:flex;align-items:center;gap:40px;padding:40px 48px">
-          <div style="flex:1;color:#fff;text-align:left">
-            <div style="display:inline-block;background:rgba(239,159,39,.2);color:#EF9F27;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:12px;margin-bottom:14px">Tableau de bord</div>
-            <div style="font-size:clamp(20px,2.5vw,28px);font-weight:800;line-height:1.3;margin-bottom:12px">Vue globale de<br>votre conformité</div>
-            <div style="font-size:14px;color:rgba(255,255,255,.8);line-height:1.7">Indicateurs clés, alertes actives et état de vos modules en un seul coup d'œil. Naviguez vers n'importe quel module en un clic.</div>
-          </div>
-          <div style="flex:0 0 260px">
-            <div style="background:#1F4E79;border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,.15)">
-              <div style="font-size:10px;font-weight:700;color:#fff;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.15)">📊 Tableau de bord DPO</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
-                <div style="background:rgba(255,255,255,.1);border-radius:8px;padding:10px"><div style="font-size:22px;font-weight:800;color:#EF9F27">12</div><div style="font-size:9px;color:rgba(255,255,255,.7)">Traitements</div></div>
-                <div style="background:rgba(255,255,255,.1);border-radius:8px;padding:10px"><div style="font-size:22px;font-weight:800;color:#EF9F27">87%</div><div style="font-size:9px;color:rgba(255,255,255,.7)">Conformité</div></div>
-                <div style="background:rgba(255,255,255,.1);border-radius:8px;padding:10px"><div style="font-size:22px;font-weight:800;color:#E24B4A">3</div><div style="font-size:9px;color:rgba(255,255,255,.7)">Alertes</div></div>
-                <div style="background:rgba(255,255,255,.1);border-radius:8px;padding:10px"><div style="font-size:22px;font-weight:800;color:#1D9E75">0</div><div style="font-size:9px;color:rgba(255,255,255,.7)">Violations</div></div>
-              </div>
-              <div style="display:flex;flex-direction:column;gap:5px">
-                <div style="display:flex;align-items:center;gap:8px;font-size:9px;color:rgba(255,255,255,.7)">M1<div style="flex:1;height:5px;background:rgba(255,255,255,.1);border-radius:3px"><div style="width:87%;height:100%;background:#EF9F27;border-radius:3px"></div></div>87%</div>
-                <div style="display:flex;align-items:center;gap:8px;font-size:9px;color:rgba(255,255,255,.7)">M2<div style="flex:1;height:5px;background:rgba(255,255,255,.1);border-radius:3px"><div style="width:100%;height:100%;background:#1D9E75;border-radius:3px"></div></div>100%</div>
-                <div style="display:flex;align-items:center;gap:8px;font-size:9px;color:rgba(255,255,255,.7)">M8<div style="flex:1;height:5px;background:rgba(255,255,255,.1);border-radius:3px"><div style="width:60%;height:100%;background:#E24B4A;border-radius:3px"></div></div>60%</div>
-              </div>
-            </div>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <span></span>
+        Conforme Loi n°2013-450 · ARTCI Côte d'Ivoire
+      </div>
+      <h1>La conformité DCP,<br><span class="grad">maîtrisée.</span></h1>
+      <p>La plateforme de référence pour les Correspondants à la Protection des Données en Côte d'Ivoire. Centralisez, automatisez, et prouvez votre conformité à l'ARTCI.</p>
+      <div class="hero-btns">
+        <a href="https://platform.lecorrespondant.ci" class="btn-primary">
+          🚀 Accéder à la plateforme
+        </a>
+        <a href="#modules" class="btn-ghost">
+          Découvrir les modules ↓
+        </a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-avatars">
+          <div class="trust-av">DG</div>
+          <div class="trust-av">AK</div>
+          <div class="trust-av">MT</div>
+          <div class="trust-av">+</div>
+        </div>
+        <div class="trust-text">
+          <strong>Cabinet SMS</strong> — éditeur de référence<br>pour la conformité DCP en Côte d'Ivoire
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="float-badge fb-1">
+        <span class="fb-icon">✅</span>
+        <div><div style="font-size:12px;font-weight:700;color:var(--white)">Conformité validée</div><div style="font-size:10px;color:var(--muted)">Score ARTCI: 87%</div></div>
+      </div>
+      <div class="dashboard-card">
+        <div class="db-header">
+          <div class="db-title">📊 Tableau de bord DPO</div>
+          <div class="db-dots">
+            <div class="db-dot" style="background:#E24B4A"></div>
+            <div class="db-dot" style="background:#EF9F27"></div>
+            <div class="db-dot" style="background:#1D9E75"></div>
           </div>
         </div>
-
-        <!-- Slide 2 : Registre -->
-        <div style="min-width:100%;display:flex;align-items:center;gap:40px;padding:40px 48px">
-          <div style="flex:1;color:#fff;text-align:left">
-            <div style="display:inline-block;background:rgba(239,159,39,.2);color:#EF9F27;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:12px;margin-bottom:14px">Module 2</div>
-            <div style="font-size:clamp(20px,2.5vw,28px);font-weight:800;line-height:1.3;margin-bottom:12px">Registre des<br>traitements ARTCI</div>
-            <div style="font-size:14px;color:rgba(255,255,255,.8);line-height:1.7">Enregistrez tous vos traitements DCP et exportez au format officiel ARTCI (17 colonnes) en un seul clic.</div>
+        <div class="db-stats">
+          <div class="db-stat">
+            <div class="db-stat-n" style="color:var(--orange)">12</div>
+            <div class="db-stat-l">Traitements</div>
           </div>
-          <div style="flex:0 0 260px">
-            <div style="background:#1F4E79;border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,.15)">
-              <div style="font-size:10px;font-weight:700;color:#fff;margin-bottom:10px">📋 Registre des traitements</div>
-              <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px">
-                <div style="display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:9px;color:rgba(255,255,255,.8)"><span style="background:rgba(29,158,117,.3);color:#5DCAA5;padding:2px 6px;border-radius:8px;font-size:8px;font-weight:700">Actif</span>Gestion RH — Paie</div>
-                <div style="display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:9px;color:rgba(255,255,255,.8)"><span style="background:rgba(29,158,117,.3);color:#5DCAA5;padding:2px 6px;border-radius:8px;font-size:8px;font-weight:700">Actif</span>Fichier clients CRM</div>
-                <div style="display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:9px;color:rgba(255,255,255,.8)"><span style="background:rgba(239,159,39,.2);color:#EF9F27;padding:2px 6px;border-radius:8px;font-size:8px;font-weight:700">Révision</span>Vidéosurveillance</div>
-                <div style="display:flex;align-items:center;gap:6px;padding:5px 0;font-size:9px;color:rgba(255,255,255,.8)"><span style="background:rgba(29,158,117,.3);color:#5DCAA5;padding:2px 6px;border-radius:8px;font-size:8px;font-weight:700">Actif</span>Newsletter marketing</div>
-              </div>
-              <div style="background:#EF9F27;border-radius:8px;padding:8px;font-size:9px;color:#fff;font-weight:700;text-align:center">📊 Exporter Excel — Format ARTCI</div>
-            </div>
+          <div class="db-stat">
+            <div class="db-stat-n" style="color:#1D9E75">87%</div>
+            <div class="db-stat-l">Conformité</div>
+          </div>
+          <div class="db-stat">
+            <div class="db-stat-n" style="color:#E24B4A">3</div>
+            <div class="db-stat-l">Alertes</div>
           </div>
         </div>
-
-        <!-- Slide 3 : Alertes -->
-        <div style="min-width:100%;display:flex;align-items:center;gap:40px;padding:40px 48px">
-          <div style="flex:1;color:#fff;text-align:left">
-            <div style="display:inline-block;background:rgba(239,159,39,.2);color:#EF9F27;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:12px;margin-bottom:14px">Alertes réglementaires</div>
-            <div style="font-size:clamp(20px,2.5vw,28px);font-weight:800;line-height:1.3;margin-bottom:12px">Ne manquez aucune<br>échéance légale</div>
-            <div style="font-size:14px;color:rgba(255,255,255,.8);line-height:1.7">Alertes automatiques H+24/H+72 pour les violations, J-3/J-7 pour les droits, 30 jours avant les dépassements de conservation.</div>
-          </div>
-          <div style="flex:0 0 260px">
-            <div style="background:#1F4E79;border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,.15)">
-              <div style="font-size:10px;font-weight:700;color:#fff;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between">🔔 Alertes actives<span style="background:rgba(226,75,74,.25);color:#F09595;font-size:8px;padding:2px 8px;border-radius:8px">3 urgentes</span></div>
-              <div style="border-radius:6px;padding:8px;margin-bottom:6px;border-left:3px solid #E24B4A;background:rgba(226,75,74,.15)">
-                <div style="font-size:9px;font-weight:700;color:#fff;margin-bottom:2px">🚨 Violation H+72 dépassé</div>
-                <div style="font-size:8px;color:rgba(255,255,255,.65)">Notification ARTCI requise</div>
-              </div>
-              <div style="border-radius:6px;padding:8px;margin-bottom:6px;border-left:3px solid #EF9F27;background:rgba(239,159,39,.12)">
-                <div style="font-size:9px;font-weight:700;color:#fff;margin-bottom:2px">⚠ Droit J-3 — M. Koné Adama</div>
-                <div style="font-size:8px;color:rgba(255,255,255,.65)">Demande d'accès — 3 jours</div>
-              </div>
-              <div style="border-radius:6px;padding:8px;border-left:3px solid #1D9E75;background:rgba(29,158,117,.12)">
-                <div style="font-size:9px;font-weight:700;color:#fff;margin-bottom:2px">📄 Contrat expiré — DataPro CI</div>
-                <div style="font-size:8px;color:rgba(255,255,255,.65)">Sous-traitant — Renouvellement</div>
-              </div>
-            </div>
-          </div>
+        <div class="db-score">
+          <div class="db-score-header"><span>Progression globale</span><span style="color:var(--blue-light)">87%</span></div>
+          <div class="db-bar"><div class="db-bar-fill" style="width:87%"></div></div>
         </div>
-
-        <!-- Slide 4 : Rapport -->
-        <div style="min-width:100%;display:flex;align-items:center;gap:40px;padding:40px 48px">
-          <div style="flex:1;color:#fff;text-align:left">
-            <div style="display:inline-block;background:rgba(239,159,39,.2);color:#EF9F27;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:12px;margin-bottom:14px">Module 9</div>
-            <div style="font-size:clamp(20px,2.5vw,28px);font-weight:800;line-height:1.3;margin-bottom:12px">Rapport annuel CPD<br>généré en 1 clic</div>
-            <div style="font-size:14px;color:rgba(255,255,255,.8);line-height:1.7">Générez automatiquement votre rapport annuel au format Word conforme au modèle officiel ARTCI, prêt à signer et soumettre.</div>
-          </div>
-          <div style="flex:0 0 260px">
-            <div style="background:#1F4E79;border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,.15)">
-              <div style="background:rgba(255,255,255,.95);border-radius:8px;padding:12px;margin-bottom:10px">
-                <div style="font-size:8px;font-weight:800;color:#1F4E79;margin-bottom:4px">LE CORRESPONDANT</div>
-                <div style="font-size:9px;font-weight:700;color:#1a1a1a;margin-bottom:8px">Rapport annuel CPD 2025</div>
-                <div style="height:3px;background:#e2e8f0;border-radius:2px;margin-bottom:3px;width:90%"></div>
-                <div style="height:3px;background:#e2e8f0;border-radius:2px;margin-bottom:3px;width:80%"></div>
-                <div style="height:3px;background:#e2e8f0;border-radius:2px;margin-bottom:3px;width:60%"></div>
-                <div style="height:3px;background:#e2e8f0;border-radius:2px;width:90%"></div>
-              </div>
-              <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px">
-                <div style="font-size:9px;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:6px">✅ Introduction rédigée</div>
-                <div style="font-size:9px;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:6px">✅ Responsable du traitement</div>
-                <div style="font-size:9px;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:6px">✅ Mesures techniques</div>
-                <div style="font-size:9px;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:6px">✅ État de conformité</div>
-              </div>
-              <div style="background:rgba(255,255,255,.1);border-radius:6px;padding:8px;font-size:9px;color:#fff;text-align:center">📄 Générer DOCX ARTCI</div>
-            </div>
-          </div>
+        <div class="db-score">
+          <div class="db-score-header"><span>M1 — Évaluation</span><span style="color:#1D9E75">92%</span></div>
+          <div class="db-bar"><div class="db-bar-fill" style="width:92%;background:linear-gradient(90deg,#1D9E75,#5DCAA5)"></div></div>
         </div>
-
-        <!-- Slide 5 : Sécurité -->
-        <div style="min-width:100%;display:flex;align-items:center;gap:40px;padding:40px 48px">
-          <div style="flex:1;color:#fff;text-align:left">
-            <div style="display:inline-block;background:rgba(239,159,39,.2);color:#EF9F27;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:12px;margin-bottom:14px">Sécurité</div>
-            <div style="font-size:clamp(20px,2.5vw,28px);font-weight:800;line-height:1.3;margin-bottom:12px">Vos données protégées<br>&amp; hébergées en CI</div>
-            <div style="font-size:14px;color:rgba(255,255,255,.8);line-height:1.7">Authentification MFA, chiffrement des données, hébergement sur serveur basé en Côte d'Ivoire. Vos données restent souveraines.</div>
+        <div class="db-score" style="margin-bottom:18px">
+          <div class="db-score-header"><span>M8 — Violations</span><span style="color:#E24B4A">60%</span></div>
+          <div class="db-bar"><div class="db-bar-fill" style="width:60%;background:linear-gradient(90deg,#E24B4A,#F09595)"></div></div>
+        </div>
+        <div class="db-alerts">
+          <div class="db-alert" style="background:rgba(226,75,74,.1)">
+            <div class="db-alert-dot" style="background:#E24B4A"></div>
+            <div class="db-alert-text">🚨 Violation H+72 — Notification ARTCI requise</div>
+            <div class="db-alert-time">Urgent</div>
           </div>
-          <div style="flex:0 0 260px">
-            <div style="background:#1F4E79;border-radius:14px;padding:20px;border:1px solid rgba(255,255,255,.15)">
-              <div style="width:80px;height:80px;border-radius:50%;border:3px solid #EF9F27;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:32px">🔐</div>
-              <div style="display:flex;flex-direction:column;gap:6px">
-                <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border-radius:6px;padding:6px 10px;font-size:9px;color:rgba(255,255,255,.85)"><div style="width:16px;height:16px;border-radius:50%;background:rgba(29,158,117,.3);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0">✓</div>Authentification MFA (TOTP)</div>
-                <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border-radius:6px;padding:6px 10px;font-size:9px;color:rgba(255,255,255,.85)"><div style="width:16px;height:16px;border-radius:50%;background:rgba(29,158,117,.3);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0">✓</div>Chiffrement PostgreSQL</div>
-                <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border-radius:6px;padding:6px 10px;font-size:9px;color:rgba(255,255,255,.85)"><div style="width:16px;height:16px;border-radius:50%;background:rgba(29,158,117,.3);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0">✓</div>Hébergement Côte d'Ivoire</div>
-                <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border-radius:6px;padding:6px 10px;font-size:9px;color:rgba(255,255,255,.85)"><div style="width:16px;height:16px;border-radius:50%;background:rgba(29,158,117,.3);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0">✓</div>Isolation multi-organisation</div>
-              </div>
-            </div>
+          <div class="db-alert" style="background:rgba(239,159,39,.08)">
+            <div class="db-alert-dot" style="background:var(--orange)"></div>
+            <div class="db-alert-text">⚠ Droit J-3 — M. Koné A.</div>
+            <div class="db-alert-time">3 jours</div>
           </div>
         </div>
       </div>
-
-      <!-- Contrôles -->
-      <button onclick="changeSlide(-1)" style="position:absolute;top:50%;left:16px;transform:translateY(-50%);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:10;transition:.2s">&#8249;</button>
-      <button onclick="changeSlide(1)" style="position:absolute;top:50%;right:16px;transform:translateY(-50%);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:10;transition:.2s">&#8250;</button>
+      <div class="float-badge fb-2">
+        <span class="fb-icon">🔐</span>
+        <div><div style="font-size:12px;font-weight:700;color:var(--white)">MFA activé</div><div style="font-size:10px;color:var(--muted)">Session sécurisée</div></div>
+      </div>
     </div>
-    <!-- Dots -->
-    <div id="slider-dots" style="display:flex;justify-content:center;gap:8px;margin-top:16px"></div>
-  </div>
-
-  <script>
-    var sliderCur = 0;
-    var sliderTotal = 5;
-    var sliderEl = document.getElementById('slides');
-    var dotsEl = document.getElementById('slider-dots');
-    for(var i=0;i<sliderTotal;i++){
-      var d = document.createElement('button');
-      d.style.cssText = 'width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);border:none;cursor:pointer;transition:.3s;padding:0';
-      if(i===0){d.style.background='#EF9F27';d.style.width='24px';d.style.borderRadius='4px'}
-      d.setAttribute('data-i',i);
-      d.onclick = function(){sliderGoTo(parseInt(this.getAttribute('data-i')));};
-      dotsEl.appendChild(d);
-    }
-    function sliderGoTo(n){
-      sliderCur=(n+sliderTotal)%sliderTotal;
-      sliderEl.style.transform='translateX(-'+sliderCur*100+'%)';
-      document.querySelectorAll('#slider-dots button').forEach(function(d,i){
-        d.style.background=i===sliderCur?'#EF9F27':'rgba(255,255,255,.3)';
-        d.style.width=i===sliderCur?'24px':'8px';
-        d.style.borderRadius=i===sliderCur?'4px':'50%';
-      });
-    }
-    function changeSlide(dir){sliderGoTo(sliderCur+dir);}
-    setInterval(function(){sliderGoTo(sliderCur+1);},4500);
-  </script>
-
-</section>
-
-<!-- SHOWCASE -->
-<section style="padding:0 5% 80px;background:var(--white)">
-  <div class="container">
-    <img src="images/hero-showcase.png" alt="Aperçu de la plateforme LE CORRESPONDANT" style="width:100%;height:auto;display:block;border-radius:16px;box-shadow:0 20px 60px rgba(13,53,86,0.18);margin-top:-60px;position:relative;z-index:5">
   </div>
 </section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">Modules de conformité</div></div>
+    <div class="stat-item"><div class="stat-num">89</div><div class="stat-label">Questions d'évaluation ARTCI</div></div>
+    <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Conforme Loi n°2013-450</div></div>
+    <div class="stat-item"><div class="stat-num">CI</div><div class="stat-label">Hébergé en Côte d'Ivoire</div></div>
+  </div>
+</div>
 
 <!-- MODULES -->
-<section class="modules" id="modules">
-  <div class="container">
+<section id="modules" class="modules-bg">
+  <div class="section-inner">
     <div class="section-label">Modules fonctionnels</div>
-    <h2 class="section-title">Tout ce dont votre DPO a besoin</h2>
-    <p class="section-sub">10 modules couvrant l'intégralité de vos obligations DCP selon la loi ivoirienne.</p>
+    <h2 class="section-title">Tout le cycle DCP,<br>en un seul endroit.</h2>
+    <p class="section-sub">10 modules couvrant l'intégralité de vos obligations réglementaires selon la loi ivoirienne.</p>
     <div class="modules-grid">
       <div class="module-card">
-        <div class="module-icon">✅</div>
-        <div class="module-num">Module 1</div>
+        <span class="module-icon">✅</span>
+        <div class="module-num">Module 01</div>
         <div class="module-title">Évaluation de conformité</div>
-        <div class="module-desc">89 questions sur 8 principes ARTCI avec plan d'action correctif automatique.</div>
+        <div class="module-desc">89 questions structurées sur les 8 principes fondamentaux de l'ARTCI. Plan d'action correctif automatique.</div>
+        <span class="module-tag">89 questions</span>
       </div>
       <div class="module-card">
-        <div class="module-icon">📋</div>
-        <div class="module-num">Module 2</div>
+        <span class="module-icon">📋</span>
+        <div class="module-num">Module 02</div>
         <div class="module-title">Registre des traitements</div>
-        <div class="module-desc">Registre officiel exportable en Excel au format ARTCI (17 colonnes).</div>
+        <div class="module-desc">Registre officiel multi-sections, exportable en Excel au format ARTCI (17 colonnes).</div>
+        <span class="module-tag">Export ARTCI</span>
       </div>
       <div class="module-card">
-        <div class="module-icon">⚖️</div>
-        <div class="module-num">Module 3</div>
+        <span class="module-icon">⚖️</span>
+        <div class="module-num">Module 03</div>
         <div class="module-title">Bases légales & Consentements</div>
-        <div class="module-desc">Traitements groupés par base légale et gestion des consentements.</div>
+        <div class="module-desc">Gestion des fondements juridiques et traçabilité complète des consentements.</div>
       </div>
       <div class="module-card">
-        <div class="module-icon">👤</div>
-        <div class="module-num">Module 4</div>
+        <span class="module-icon">👤</span>
+        <div class="module-num">Module 04</div>
         <div class="module-title">Droits des personnes</div>
-        <div class="module-desc">Suivi des demandes d'accès, rectification, opposition avec alertes J-7 et J-3.</div>
+        <div class="module-desc">Suivi des demandes d'accès, rectification, opposition. Délai légal 15 jours respecté.</div>
+        <span class="module-tag">Alertes J-7 · J-3</span>
       </div>
       <div class="module-card">
-        <div class="module-icon">🗓️</div>
-        <div class="module-num">Module 5</div>
+        <span class="module-icon">🗓️</span>
+        <div class="module-num">Module 05</div>
         <div class="module-title">Conservation des données</div>
-        <div class="module-desc">Contrôle des durées de conservation avec alertes 30 jours avant dépassement.</div>
+        <div class="module-desc">Contrôle des durées de conservation avec alertes automatiques avant dépassement.</div>
+        <span class="module-tag">Alerte J-30</span>
       </div>
       <div class="module-card">
-        <div class="module-icon">🌍</div>
-        <div class="module-num">Module 6</div>
+        <span class="module-icon">🌍</span>
+        <div class="module-num">Module 06</div>
         <div class="module-title">Transferts hors CEDEAO</div>
-        <div class="module-desc">Registre des transferts vers des pays hors zone CEDEAO.</div>
+        <div class="module-desc">Identification et suivi des transferts internationaux vers pays hors CEDEAO.</div>
       </div>
       <div class="module-card">
-        <div class="module-icon">🤝</div>
-        <div class="module-num">Module 7</div>
+        <span class="module-icon">🤝</span>
+        <div class="module-num">Module 07</div>
         <div class="module-title">Sous-traitants</div>
-        <div class="module-desc">Gestion des contrats avec alertes automatiques à l'expiration.</div>
+        <div class="module-desc">Registre des contrats, suivi des garanties et alertes à l'expiration.</div>
+        <span class="module-tag">Alertes expiration</span>
       </div>
       <div class="module-card">
-        <div class="module-icon">🚨</div>
-        <div class="module-num">Module 8</div>
+        <span class="module-icon">🚨</span>
+        <div class="module-num">Module 08</div>
         <div class="module-title">Violations & incidents</div>
-        <div class="module-desc">Déclaration et suivi avec alertes réglementaires H+24, H+48, H+72.</div>
+        <div class="module-desc">Déclaration, suivi et notification des violations avec les délais réglementaires ARTCI.</div>
+        <span class="module-tag">H+24 · H+48 · H+72</span>
       </div>
       <div class="module-card">
-        <div class="module-icon">📄</div>
-        <div class="module-num">Module 9</div>
+        <span class="module-icon">📄</span>
+        <div class="module-num">Module 09</div>
         <div class="module-title">Rapport annuel CPD</div>
-        <div class="module-desc">Génération automatique du rapport annuel ARTCI au format Word officiel.</div>
+        <div class="module-desc">Génération automatique du rapport annuel au format Word officiel ARTCI, prêt à soumettre.</div>
+        <span class="module-tag">Format ARTCI</span>
       </div>
       <div class="module-card">
-        <div class="module-icon">📁</div>
+        <span class="module-icon">📁</span>
         <div class="module-num">Module 10</div>
-        <div class="module-title">Documentation</div>
-        <div class="module-desc">Bibliothèque centralisée de vos politiques, chartes et procédures DCP.</div>
+        <div class="module-title">Documentation DCP</div>
+        <div class="module-desc">Bibliothèque centralisée de vos politiques, chartes, procédures et modèles.</div>
       </div>
     </div>
   </div>
@@ -414,62 +498,71 @@
 
 <!-- FEATURES -->
 <section id="features">
-  <div class="container">
-    <div class="section-label">Fonctionnalités clés</div>
-    <h2 class="section-title">Conçu pour les DPOs ivoiriens</h2>
-    <div class="features-grid">
-      <div class="feature-list">
+  <div class="section-inner">
+    <div class="section-label">Fonctionnalités</div>
+    <h2 class="section-title">Conçu pour<br>les DPOs ivoiriens.</h2>
+    <div class="features-layout">
+      <div class="features-list">
         <div class="feature-item">
-          <div class="feature-icon">🔔</div>
+          <div class="feature-icon-wrap">🔔</div>
           <div>
             <div class="feature-title">Alertes réglementaires automatiques</div>
-            <div class="feature-desc">Notifications quotidiennes sur les échéances critiques : violations H+72, droits J-3, contrats expirés.</div>
+            <div class="feature-desc">Notifications quotidiennes sur toutes vos échéances DCP. Violations H+72, droits J-3, contrats expirés.</div>
           </div>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">👥</div>
+          <div class="feature-icon-wrap">👥</div>
           <div>
             <div class="feature-title">Multi-utilisateurs & rôles</div>
-            <div class="feature-desc">Gérez votre équipe avec des profils Admin, DPO et Lecteur. Chaque organisation est isolée.</div>
+            <div class="feature-desc">Profils Admin, DPO et Lecteur. Isolation complète des données par organisation.</div>
           </div>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">🔐</div>
+          <div class="feature-icon-wrap">🔐</div>
           <div>
-            <div class="feature-title">Sécurité renforcée (MFA)</div>
-            <div class="feature-desc">Authentification à deux facteurs, chiffrement des données, hébergement en Côte d'Ivoire.</div>
+            <div class="feature-title">Sécurité renforcée MFA</div>
+            <div class="feature-desc">Authentification à deux facteurs, chiffrement PostgreSQL, hébergement en Côte d'Ivoire.</div>
           </div>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">📤</div>
+          <div class="feature-icon-wrap">📤</div>
           <div>
-            <div class="feature-title">Export aux formats ARTCI</div>
-            <div class="feature-desc">Registre en Excel 17 colonnes et rapport annuel CPD en Word, prêts à soumettre à l'ARTCI.</div>
+            <div class="feature-title">Exports aux formats ARTCI</div>
+            <div class="feature-desc">Registre Excel 17 colonnes et rapport annuel CPD en Word. Prêts à soumettre à l'ARTCI.</div>
           </div>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">💾</div>
+          <div class="feature-icon-wrap">💾</div>
           <div>
             <div class="feature-title">Sauvegarde & restauration</div>
-            <div class="feature-desc">Sauvegarde complète de vos données au format JSON, avec restauration en un clic.</div>
+            <div class="feature-desc">Sauvegarde complète au format JSON avec restauration en un clic.</div>
           </div>
         </div>
       </div>
       <div class="feature-visual">
-        <div>
-          <div class="visual-title">Tableau de bord DPO</div>
-          <div class="visual-sub">Vue en temps réel de votre conformité</div>
-          <div class="visual-stats">
-            <div class="v-stat"><div class="v-stat-num">12</div><div class="v-stat-label">Traitements actifs</div></div>
-            <div class="v-stat"><div class="v-stat-num">3</div><div class="v-stat-label">Alertes en cours</div></div>
-            <div class="v-stat"><div class="v-stat-num">87%</div><div class="v-stat-label">Score conformité</div></div>
-            <div class="v-stat"><div class="v-stat-num">0</div><div class="v-stat-label">Violations ouvertes</div></div>
+        <div class="terminal">
+          <div class="terminal-header">
+            <div class="t-dot" style="background:#E24B4A"></div>
+            <div class="t-dot" style="background:#EF9F27"></div>
+            <div class="t-dot" style="background:#1D9E75"></div>
+            <div class="terminal-title">alertes-reglementaires.log</div>
           </div>
-        </div>
-        <div class="visual-modules">
-          <div class="v-module">✅ Évaluation M1 <span class="v-badge">Complétée</span></div>
-          <div class="v-module">📋 Registre M2 <span class="v-badge">À jour</span></div>
-          <div class="v-module">🚨 Violations M8 <span class="v-badge">0 active</span></div>
+          <div class="terminal-body">
+            <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">pg_cron → generer_toutes_alertes()</span></div>
+            <div class="t-line"><span class="t-out">✓ Vérification violations en cours...</span></div>
+            <div class="t-line"><span class="t-err">⚠ ALERTE H+72 — Violation #2024-08</span></div>
+            <div class="t-line"><span class="t-comment">  → Notification ARTCI requise</span></div>
+            <div class="t-line"></div>
+            <div class="t-line"><span class="t-out">✓ Vérification droits J-3...</span></div>
+            <div class="t-line"><span class="t-warn">⚠ ALERTE J-3 — Koné Adama</span></div>
+            <div class="t-line"><span class="t-comment">  → Échéance: 2026-08-09</span></div>
+            <div class="t-line"></div>
+            <div class="t-line"><span class="t-out">✓ Vérification sous-traitants...</span></div>
+            <div class="t-line"><span class="t-warn">⚠ Contrat expiré: DataPro CI</span></div>
+            <div class="t-line"></div>
+            <div class="t-line"><span class="t-out">✓ 3 alertes générées avec succès</span></div>
+            <div class="t-line"><span class="t-prompt">$</span><span class="t-blink">█</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -477,76 +570,78 @@
 </section>
 
 <!-- CONFORMITE -->
-<section class="conformite" id="conformite">
-  <div class="container">
+<section id="conformite" class="conformite-section">
+  <div class="section-inner">
     <div class="section-label">Cadre réglementaire</div>
-    <h2 class="section-title">100% conforme à la loi ivoirienne</h2>
-    <p class="section-sub">LE CORRESPONDANT est entièrement aligné sur les exigences de la Loi n°2013-450 et les directives de l'ARTCI.</p>
-    <div class="loi-grid">
-      <div class="loi-card">
-        <div class="loi-icon">🏛️</div>
-        <div class="loi-title">Loi n°2013-450</div>
-        <div class="loi-desc">Conforme à la loi du 19 juin 2013 relative à la protection des données à caractère personnel en Côte d'Ivoire.</div>
+    <h2 class="section-title">100% conforme à<br>la loi ivoirienne.</h2>
+    <p class="section-sub">Entièrement aligné sur les exigences de la Loi n°2013-450 et les directives de l'ARTCI.</p>
+    <div class="conformite-grid">
+      <div class="conformite-card">
+        <span class="conf-icon">🏛️</span>
+        <div class="conf-title">Loi n°2013-450</div>
+        <div class="conf-desc">Conforme à la loi du 19 juin 2013 relative à la protection des données à caractère personnel en Côte d'Ivoire.</div>
       </div>
-      <div class="loi-card">
-        <div class="loi-icon">📡</div>
-        <div class="loi-title">ARTCI</div>
-        <div class="loi-desc">Aligné sur les directives de l'Autorité de Régulation des Télécommunications/TIC de Côte d'Ivoire.</div>
+      <div class="conformite-card">
+        <span class="conf-icon">📡</span>
+        <div class="conf-title">ARTCI</div>
+        <div class="conf-desc">Aligné sur les directives et méthodologies de l'Autorité de Régulation des Télécommunications/TIC.</div>
       </div>
-      <div class="loi-card">
-        <div class="loi-icon">🗺️</div>
-        <div class="loi-title">Hébergement local</div>
-        <div class="loi-desc">Données hébergées sur des serveurs basés en Côte d'Ivoire, garantissant la souveraineté numérique.</div>
+      <div class="conformite-card">
+        <span class="conf-icon">🗺️</span>
+        <div class="conf-title">Hébergement local</div>
+        <div class="conf-desc">Données hébergées exclusivement sur des serveurs basés en Côte d'Ivoire. Souveraineté numérique garantie.</div>
       </div>
-      <div class="loi-card">
-        <div class="loi-icon">🔒</div>
-        <div class="loi-title">8 principes ARTCI</div>
-        <div class="loi-desc">Évaluation couvrant les 8 principes fondamentaux : légitimité, proportionnalité, conservation, transparence...</div>
+      <div class="conformite-card">
+        <span class="conf-icon">🔒</span>
+        <div class="conf-title">8 principes ARTCI</div>
+        <div class="conf-desc">Architecture bâtie sur les 8 principes fondamentaux : légitimité, proportionnalité, conservation, transparence...</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-box">
+    <div class="section-label" style="justify-content:center;margin-bottom:20px">Commencer maintenant</div>
+    <h2>Prêt à maîtriser<br>votre conformité DCP ?</h2>
+    <p>Accédez à la plateforme LE CORRESPONDANT et commencez à gérer votre conformité dès aujourd'hui.</p>
+    <a href="https://platform.lecorrespondant.ci" class="btn-primary" style="margin:0 auto;width:fit-content;font-size:16px;padding:16px 36px">
+      🚀 Accéder à la plateforme
+    </a>
+  </div>
+</section>
+
 <!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="container">
+<section id="contact" class="contact-section">
+  <div class="section-inner">
     <div class="section-label">Contact</div>
-    <h2 class="section-title">Contactez le Cabinet SMS</h2>
+    <h2 class="section-title">Contactez<br>le Cabinet SMS.</h2>
     <div class="contact-grid">
       <div class="contact-info">
         <div class="contact-item">
-          <div class="contact-icon">📞</div>
-          <div>
-            <div class="contact-label">Téléphone</div>
-            <div class="contact-val">+225 07 88 88 67 67</div>
-          </div>
+          <div class="ci-icon">📞</div>
+          <div><div class="ci-label">Téléphone</div><div class="ci-val">+225 07 88 88 67 67</div></div>
         </div>
         <div class="contact-item">
-          <div class="contact-icon">✉️</div>
-          <div>
-            <div class="contact-label">Email</div>
-            <div class="contact-val"><a href="mailto:contact@sms-ci.net" style="color:var(--blue)">contact@sms-ci.net</a></div>
-          </div>
+          <div class="ci-icon">✉️</div>
+          <div><div class="ci-label">Email</div><div class="ci-val"><a href="mailto:contact@sms-ci.net" style="color:var(--blue-light)">contact@sms-ci.net</a></div></div>
         </div>
         <div class="contact-item">
-          <div class="contact-icon">🌍</div>
-          <div>
-            <div class="contact-label">Localisation</div>
-            <div class="contact-val">Abidjan, Côte d'Ivoire</div>
-          </div>
+          <div class="ci-icon">📍</div>
+          <div><div class="ci-label">Localisation</div><div class="ci-val">Abidjan, Côte d'Ivoire</div></div>
         </div>
         <div class="contact-item">
-          <div class="contact-icon">⚖️</div>
-          <div>
-            <div class="contact-label">Autorité de contrôle</div>
-            <div class="contact-val">ARTCI — Abidjan</div>
-          </div>
+          <div class="ci-icon">⚖️</div>
+          <div><div class="ci-label">Autorité de contrôle</div><div class="ci-val">ARTCI — Abidjan</div></div>
         </div>
       </div>
-      <div class="contact-cta">
-        <h3>Prêt à commencer ?</h3>
-        <p>Accédez à votre espace de conformité DCP et commencez à gérer vos traitements dès aujourd'hui.</p>
-        <a href="https://platform.lecorrespondant.ci" class="cta-btn">Accéder à la plateforme →</a>
+      <div class="contact-cta-card">
+        <h3>Accédez à votre espace</h3>
+        <p>La plateforme LE CORRESPONDANT est disponible maintenant. Connectez-vous ou contactez le Cabinet SMS pour obtenir vos accès.</p>
+        <a href="https://platform.lecorrespondant.ci" class="btn-primary" style="width:100%;justify-content:center">
+          Accéder à la plateforme →
+        </a>
       </div>
     </div>
   </div>
@@ -554,56 +649,56 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">LE CORRESPONDANT</div>
-  <div class="footer-sub">Plateforme de conformité DCP — Loi n°2013-450 — ARTCI Côte d'Ivoire</div>
-  <div class="footer-links">
-    <a href="#modules">Modules</a>
-    <a href="#conformite">Conformité</a>
-    <a href="#contact">Contact</a>
-    <a href="https://platform.lecorrespondant.ci">Accéder à la plateforme</a>
-  </div>
-  <div class="footer-copy">© 2026 Cabinet SMS — contact@sms-ci.net — +225 07 88 88 67 67</div>
-  <div style="margin-top:16px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap">
-    <a href="/cgu.html" style="font-size:12px;color:rgba(255,255,255,.5);text-decoration:none;transition:.15s" onmouseover="this.style.color='#EF9F27'" onmouseout="this.style.color='rgba(255,255,255,.5)'">Conditions Générales d'Utilisation</a>
-    <a href="/confidentialite.html" style="font-size:12px;color:rgba(255,255,255,.5);text-decoration:none;transition:.15s" onmouseover="this.style.color='#EF9F27'" onmouseout="this.style.color='rgba(255,255,255,.5)'">Politique de Confidentialité</a>
-    <a href="/cookies.html" style="font-size:12px;color:rgba(255,255,255,.5);text-decoration:none;transition:.15s" onmouseover="this.style.color='#EF9F27'" onmouseout="this.style.color='rgba(255,255,255,.5)'">Politique de Cookies</a>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <svg width="28" height="32" viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 12 L84 28 L84 68 Q84 91 50 103 Q16 91 16 68 L16 28 Z" fill="rgba(46,117,182,0.4)"/>
+        <path d="M26 57 L43 74 L74 38" fill="none" stroke="white" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <div class="footer-copy" style="color:var(--text);font-weight:600">LE CORRESPONDANT</div>
+        <div class="footer-copy">© 2026 Cabinet SMS · contact@sms-ci.net · +225 07 88 88 67 67</div>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="/cgu.html">CGU</a>
+      <a href="/confidentialite.html">Confidentialité</a>
+      <a href="/cookies.html">Cookies</a>
+    </div>
+    <div class="footer-artci">🛡 Conforme ARTCI · Loi n°2013-450</div>
   </div>
 </footer>
 
-
-<!-- COOKIE POPUP -->
-<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;z-index:9999;padding:20px 5%;background:#fff;border-top:1px solid #e2e8f0;box-shadow:0 -4px 24px rgba(0,0,0,0.10);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
-  <div style="display:flex;align-items:flex-start;gap:14px;flex:1;min-width:260px">
-    <span style="font-size:28px;flex-shrink:0">🍪</span>
-    <div>
-      <div style="font-size:15px;font-weight:700;color:#1F4E79;margin-bottom:4px">Ce site utilise des cookies</div>
-      <div style="font-size:13px;color:#64748b;line-height:1.6">Nous utilisons des cookies pour améliorer votre expérience de navigation et analyser notre trafic. Vos données sont hébergées en Côte d'Ivoire et traitées conformément à la <strong>Loi n°2013-450</strong> relative à la protection des données personnelles.</div>
-    </div>
+<!-- COOKIE BANNER -->
+<div id="cookie-banner">
+  <div>
+    <div class="cb-title">🍪 Ce site utilise des cookies</div>
+    <div class="cb-text">Nous utilisons des cookies fonctionnels pour améliorer votre expérience. Vos données sont hébergées en Côte d'Ivoire et traitées conformément à la <strong style="color:var(--orange)">Loi n°2013-450</strong>. <a href="/cookies.html" style="color:var(--blue-light)">En savoir plus</a></div>
   </div>
-  <div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap">
-    <button onclick="rejectCookies()" style="padding:10px 20px;border-radius:8px;border:1.5px solid #d3d1c7;background:#fff;color:#64748b;font-size:13px;font-weight:600;cursor:pointer;transition:.15s">Refuser</button>
-    <button onclick="acceptCookies()" style="padding:10px 24px;border-radius:8px;border:none;background:#1F4E79;color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:.15s">Accepter</button>
+  <div class="cb-btns">
+    <button class="cb-reject" onclick="rejectCookies()">Refuser</button>
+    <button class="cb-accept" onclick="acceptCookies()">Accepter les cookies</button>
   </div>
 </div>
 
 <script>
-  // Afficher le banner seulement si pas encore de choix
-  (function(){
-    if(localStorage.getItem('cookie_consent')) {
-      document.getElementById('cookie-banner').style.display = 'none';
-    }
-  })();
-
-  function acceptCookies() {
-    localStorage.setItem('cookie_consent', 'accepted');
-    document.getElementById('cookie-banner').style.display = 'none';
+(function(){
+  if(localStorage.getItem('cookie_consent')){
+    document.getElementById('cookie-banner').style.display='none';
   }
+})();
+function acceptCookies(){localStorage.setItem('cookie_consent','accepted');document.getElementById('cookie-banner').style.display='none';}
+function rejectCookies(){localStorage.setItem('cookie_consent','rejected');document.getElementById('cookie-banner').style.display='none';}
 
-  function rejectCookies() {
-    localStorage.setItem('cookie_consent', 'rejected');
-    document.getElementById('cookie-banner').style.display = 'none';
+// Nav scroll effect
+window.addEventListener('scroll', function(){
+  var nav = document.querySelector('nav');
+  if(window.scrollY > 50){
+    nav.style.borderBottomColor = 'rgba(255,255,255,0.1)';
+  } else {
+    nav.style.borderBottomColor = 'rgba(255,255,255,0.08)';
   }
+});
 </script>
-
 </body>
 </html>
