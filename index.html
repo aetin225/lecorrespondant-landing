@@ -466,6 +466,7 @@ footer{background:var(--blue-deep);color:rgba(255,255,255,.4);padding:48px 24px 
 <div class="form-group"><label>Téléphone</label><input type="tel" name="tel" placeholder="+225 07 00 00 00 00"></div>
 <div class="form-group"><label>Fonction</label><select name="role"><option value="">Sélectionner</option><option>DPO / Correspondant</option><option>Responsable juridique</option><option>Direction générale</option><option>RSSI / Sécurité</option><option>Autre</option></select></div>
 </div>
+<div class="form-group" style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden" aria-hidden="true"><label>Website</label><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
 <div class="form-group"><label>Message (optionnel)</label><textarea name="message" placeholder="Vos besoins en conformité DCP…"></textarea></div>
 <button type="submit" class="form-submit">Demander une démo →</button>
 <p class="form-note">Données traitées conformément à la Loi n°2013-450.</p>
@@ -525,6 +526,7 @@ footer{background:var(--blue-deep);color:rgba(255,255,255,.4);padding:48px 24px 
 <div class="form-group"><label>Email professionnel *</label><input type="email" name="email" required></div>
 <div class="form-group"><label>Organisation *</label><input type="text" name="org" required></div>
 <div class="form-group"><label>Téléphone</label><input type="tel" name="tel"></div>
+<div class="form-group" style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden" aria-hidden="true"><label>Website</label><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
 <button type="submit" class="form-submit">Envoyer la demande →</button>
 <p class="form-note">Réponse sous 24 h · Loi n°2013-450</p>
 </form>
@@ -564,16 +566,58 @@ document.querySelectorAll('.plat-item').forEach(item=>{item.addEventListener('cl
 function openDemo(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden'}
 function closeDemo(){document.getElementById('modal').classList.remove('open');document.body.style.overflow=''}
 
-function submitDemo(e){e.preventDefault();const f=e.target;
-const subject=encodeURIComponent('Demande de démo — LE CORRESPONDANT');
-const body=encodeURIComponent(`Prénom: ${f.prenom.value}\nNom: ${f.nom.value}\nEmail: ${f.email.value}\nOrganisation: ${f.org.value}\nTéléphone: ${f.tel.value||'—'}\nFonction: ${f.role.value||'—'}\nMessage: ${f.message.value||'—'}`);
-window.location.href=`mailto:contact@lecorrespondant.ci,contact@sms-ci.net?subject=${subject}&body=${body}`;
-document.getElementById('form-fields').style.display='none';document.getElementById('form-success').classList.add('show');return false}
-function submitModal(e){e.preventDefault();const f=e.target;
-const subject=encodeURIComponent('Demande de démo — LE CORRESPONDANT');
-const body=encodeURIComponent(`Prénom: ${f.prenom.value}\nNom: ${f.nom.value}\nEmail: ${f.email.value}\nOrganisation: ${f.org.value}\nTéléphone: ${f.tel.value||'—'}`);
-window.location.href=`mailto:contact@lecorrespondant.ci,contact@sms-ci.net?subject=${subject}&body=${body}`;
-document.getElementById('modal-fields').style.display='none';document.getElementById('modal-success').classList.add('show');return false}
+async function sendDemo(data, btn){
+  if(btn){btn.disabled=true;btn.dataset.label=btn.textContent;btn.textContent='Envoi en cours…'}
+  try{
+    const res=await fetch('/api/demo',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+    const json=await res.json().catch(()=>({ok:false}));
+    if(!res.ok||!json.ok)throw new Error(json.error||'Erreur serveur');
+    return true;
+  }catch(err){
+    alert(err.message||'Impossible d\'envoyer la demande. Réessayez ou écrivez à contact@lecorrespondant.ci');
+    return false;
+  }finally{
+    if(btn){btn.disabled=false;btn.textContent=btn.dataset.label||'Demander une démo →'}
+  }
+}
+async function submitDemo(e){
+  e.preventDefault();
+  const f=e.target;
+  const btn=f.querySelector('.form-submit');
+  const ok=await sendDemo({
+    prenom:f.prenom.value.trim(),
+    nom:f.nom.value.trim(),
+    email:f.email.value.trim(),
+    org:f.org.value.trim(),
+    tel:f.tel.value.trim(),
+    role:f.role.value,
+    message:f.message.value.trim(),
+    website:f.website?f.website.value:''
+  },btn);
+  if(ok){
+    document.getElementById('form-fields').style.display='none';
+    document.getElementById('form-success').classList.add('show');
+  }
+  return false;
+}
+async function submitModal(e){
+  e.preventDefault();
+  const f=e.target;
+  const btn=f.querySelector('.form-submit');
+  const ok=await sendDemo({
+    prenom:f.prenom.value.trim(),
+    nom:f.nom.value.trim(),
+    email:f.email.value.trim(),
+    org:f.org.value.trim(),
+    tel:f.tel.value.trim(),
+    website:f.website?f.website.value:''
+  },btn);
+  if(ok){
+    document.getElementById('modal-fields').style.display='none';
+    document.getElementById('modal-success').classList.add('show');
+  }
+  return false;
+}
 
 if(localStorage.getItem('ck'))document.getElementById('ck').style.display='none';
 function ckYes(){localStorage.setItem('ck','1');document.getElementById('ck').style.display='none'}
