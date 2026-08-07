@@ -502,7 +502,7 @@ footer{background:var(--blue-deep);color:rgba(255,255,255,.4);padding:48px 24px 
 <div class="ft-cols">
 <div class="ft-col"><h4>Produit</h4><a href="#modules">Modules</a><a href="#platform">Plateforme</a><a href="#process">Comment ça marche</a><a href="#demo">Demander une démo</a></div>
 <div class="ft-col"><h4>Conformité</h4><a href="#compliance">Loi 2013-450</a><a href="#compliance">ARTCI</a><a href="#compliance">Hébergement CI</a></div>
-<div class="ft-col"><h4>Contact</h4><a href="mailto:contact@sms-ci.net">contact@sms-ci.net</a><a href="tel:+2250788886767">+225 07 88 88 67 67</a><a href="#demo">Démo</a></div>
+<div class="ft-col"><h4>Contact</h4><a href="mailto:contact@lecorrespondant.ci">contact@lecorrespondant.ci</a><a href="mailto:contact@sms-ci.net">contact@sms-ci.net</a><a href="tel:+2250788886767">+225 07 88 88 67 67</a><a href="#demo">Démo</a></div>
 </div>
 </div>
 <div class="ft-bottom">
@@ -567,12 +567,12 @@ function closeDemo(){document.getElementById('modal').classList.remove('open');d
 function submitDemo(e){e.preventDefault();const f=e.target;
 const subject=encodeURIComponent('Demande de démo — LE CORRESPONDANT');
 const body=encodeURIComponent(`Prénom: ${f.prenom.value}\nNom: ${f.nom.value}\nEmail: ${f.email.value}\nOrganisation: ${f.org.value}\nTéléphone: ${f.tel.value||'—'}\nFonction: ${f.role.value||'—'}\nMessage: ${f.message.value||'—'}`);
-window.location.href=`mailto:contact@sms-ci.net?subject=${subject}&body=${body}`;
+window.location.href=`mailto:contact@lecorrespondant.ci,contact@sms-ci.net?subject=${subject}&body=${body}`;
 document.getElementById('form-fields').style.display='none';document.getElementById('form-success').classList.add('show');return false}
 function submitModal(e){e.preventDefault();const f=e.target;
 const subject=encodeURIComponent('Demande de démo — LE CORRESPONDANT');
 const body=encodeURIComponent(`Prénom: ${f.prenom.value}\nNom: ${f.nom.value}\nEmail: ${f.email.value}\nOrganisation: ${f.org.value}\nTéléphone: ${f.tel.value||'—'}`);
-window.location.href=`mailto:contact@sms-ci.net?subject=${subject}&body=${body}`;
+window.location.href=`mailto:contact@lecorrespondant.ci,contact@sms-ci.net?subject=${subject}&body=${body}`;
 document.getElementById('modal-fields').style.display='none';document.getElementById('modal-success').classList.add('show');return false}
 
 if(localStorage.getItem('ck'))document.getElementById('ck').style.display='none';
