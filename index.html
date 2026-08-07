@@ -262,6 +262,22 @@ footer{background:var(--blue-deep);color:rgba(255,255,255,.4);padding:48px 24px 
 .modal-body{padding:24px}
 
 @media(max-width:700px){.nav-links{display:none}.hero{padding:56px 20px 48px}section{padding:64px 20px}}
+
+/* COOKIE BANNER */
+#ck{position:fixed;bottom:0;left:0;right:0;z-index:9999;padding:16px 24px;background:rgba(255,255,255,.97);backdrop-filter:blur(14px);border-top:1px solid var(--border);box-shadow:0 -6px 24px rgba(0,0,0,.06);display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;animation:slideUp .45s ease}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.ck-t{display:flex;align-items:flex-start;gap:12px;flex:1;min-width:240px}
+.ck-t h4{font-size:13.5px;font-weight:700;color:var(--blue);margin-bottom:2px}
+.ck-t p{font-size:12.5px;color:var(--muted);line-height:1.5}
+.ck-t a{color:var(--blue);text-decoration:underline}
+.ck-b{display:flex;gap:8px;flex-shrink:0}
+.ck-b button{padding:9px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:all var(--t);border:none}
+.ck-no{background:#fff;color:var(--muted);border:1.5px solid var(--border)!important}
+.ck-no:hover{background:var(--bg)}
+.ck-yes{background:var(--blue);color:#fff}
+.ck-yes:hover{background:var(--blue-dark)}
+@media(max-width:600px){#ck{flex-direction:column;align-items:stretch}.ck-b{justify-content:stretch}.ck-b button{flex:1}}
+
 </style>
 </head>
 <body>
@@ -558,6 +574,17 @@ const subject=encodeURIComponent('Demande de démo — LE CORRESPONDANT');
 const body=encodeURIComponent(`Prénom: ${f.prenom.value}\nNom: ${f.nom.value}\nEmail: ${f.email.value}\nOrganisation: ${f.org.value}\nTéléphone: ${f.tel.value||'—'}`);
 window.location.href=`mailto:contact@sms-ci.net?subject=${subject}&body=${body}`;
 document.getElementById('modal-fields').style.display='none';document.getElementById('modal-success').classList.add('show');return false}
+
+if(localStorage.getItem('ck'))document.getElementById('ck').style.display='none';
+function ckYes(){localStorage.setItem('ck','1');document.getElementById('ck').style.display='none'}
+function ckNo(){localStorage.setItem('ck','0');document.getElementById('ck').style.display='none'}
+
 </script>
+
+<div id="ck">
+<div class="ck-t"><span style="font-size:22px">🍪</span><div><h4>Ce site utilise des cookies</h4><p>Pour améliorer votre expérience. Données hébergées en Côte d'Ivoire conformément à la <strong>Loi n°2013-450</strong>. <a href="/cookies.html">En savoir plus</a></p></div></div>
+<div class="ck-b"><button class="ck-no" onclick="ckNo()">Refuser</button><button class="ck-yes" onclick="ckYes()">Accepter</button></div>
+</div>
+
 </body>
 </html>
