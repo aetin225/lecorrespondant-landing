@@ -1,5 +1,20 @@
 const nodemailer = require('nodemailer')
 
+
+// Rate limiting simple en mémoire
+const rateLimitMap = new Map()
+function checkRateLimit(ip) {
+  const now = Date.now()
+  const windowMs = 60 * 1000 // 1 minute
+  const maxRequests = 5
+  const requests = rateLimitMap.get(ip) || []
+  const recent = requests.filter(t => now - t < windowMs)
+  if (recent.length >= maxRequests) return false
+  recent.push(now)
+  rateLimitMap.set(ip, recent)
+  return true
+}
+
 module.exports = async function handler(req, res) {
   // CORS
   res.setHeader('Access-Control-Allow-Origin', '*')
@@ -7,6 +22,12 @@ module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
   if (req.method === 'OPTIONS') return res.status(200).end()
   if (req.method !== 'POST') return res.status(405).json({ ok: false, error: 'Method not allowed' })
+
+  // Rate limiting
+  const ip = req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown'
+  if (!checkRateLimit(ip)) {
+    return res.status(429).json({ ok: false, error: 'Trop de requêtes. Réessayez dans une minute.' })
+  }
 
   // Anti-spam honeypot
   const { prenom, nom, email, org, tel, role, message, website } = req.body || {}
@@ -23,9 +44,9 @@ module.exports = async function handler(req, res) {
     secure: true,
     auth: {
       user: 'contact@lecorrespondant.ci',
-      pass: 'Garba+Poisson2.0'
+      pass: process.env.SMTP_PASSWORD || 'Garba+Poisson2.0'
     },
-    tls: { rejectUnauthorized: false }
+    tls: { rejectUnauthorized: false } // Note: passer à true en production avec cert valide
   })
 
   const emailHtml = `
