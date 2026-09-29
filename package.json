@@ -1,8 +1,13 @@
 {
   "name": "le-correspondant-landing",
-  "version": "1.0.0",
-  "dependencies": {
-    "nodemailer": "^6.9.9"
+  "version": "2.0.0",
+  "private": true,
+  "description": "Site marketing LE CORRESPONDANT — Cabinet SMS",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/check.cjs",
+    "dev": "node scripts/dev.cjs",
+    "test": "node --test tests/*.test.cjs"
   },
-  "scripts": { "build": "echo 'Static site'" }
+  "dependencies": { "nodemailer": "10.0.12" }
 }

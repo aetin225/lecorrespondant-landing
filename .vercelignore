@@ -1,0 +1,9 @@
+node_modules
+.git
+.env
+.env.local
+tests
+README.md
+GUIDE-DEPLOIEMENT.md
+ASSETS.md
+VALIDATION.md

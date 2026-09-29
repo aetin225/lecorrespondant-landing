@@ -1,0 +1,20 @@
+'use strict';
+const header=document.querySelector('.header');
+window.addEventListener('scroll',()=>header?.classList.toggle('scrolled',window.scrollY>12),{passive:true});
+const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('#navigation');
+function closeMenu(){nav?.classList.remove('open');toggle?.setAttribute('aria-expanded','false');toggle?.setAttribute('aria-label','Ouvrir le menu')}
+toggle?.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Fermer le menu':'Ouvrir le menu')});
+nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav?.classList.contains('open')){closeMenu();toggle.focus()}});
+const tabs=[...document.querySelectorAll('[role=tab]')];
+function activateTab(tab){tabs.forEach(t=>{const selected=t===tab;t.setAttribute('aria-selected',String(selected));t.tabIndex=selected?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!selected})}
+tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>activateTab(tab));tab.addEventListener('keydown',e=>{let target;if(e.key==='ArrowRight')target=(i+1)%tabs.length;if(e.key==='ArrowLeft')target=(i-1+tabs.length)%tabs.length;if(e.key==='Home')target=0;if(e.key==='End')target=tabs.length-1;if(target!==undefined){e.preventDefault();activateTab(tabs[target]);tabs[target].focus()}})});
+const dialog=document.getElementById('screen-dialog');
+document.querySelectorAll('[data-zoom]').forEach(button=>button.addEventListener('click',()=>{if(!dialog)return;const img=document.getElementById('screen-image');img.src=button.dataset.zoom;img.alt=button.dataset.title+' — données fictives';document.getElementById('screen-title').textContent=button.dataset.title;dialog.showModal()}));
+dialog?.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());
+dialog?.addEventListener('click',e=>{const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()});
+if('IntersectionObserver'in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js-motion');const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}
+const year=document.getElementById('year');if(year)year.textContent=new Date().getFullYear();
+const form=document.getElementById('demo-form');
+form?.addEventListener('submit',async e=>{e.preventDefault();if(!form.reportValidity())return;const button=form.querySelector('[type=submit]'),status=document.getElementById('form-status');if(button.disabled)return;button.disabled=true;button.textContent='Envoi en cours…';status.textContent='';delete status.dataset.state;const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),25000);
+try{const payload=Object.fromEntries(new FormData(form));payload.consent=Boolean(payload.consent);const response=await fetch('/api/demo',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:controller.signal});const result=await response.json().catch(()=>({}));if(!response.ok||!result.ok)throw Error(result.error||'Envoi indisponible. Écrivez-nous à contact@sms-ci.net.');status.dataset.state='success';status.textContent='Merci ! Votre demande a bien été transmise. Notre équipe vous recontactera pour organiser votre démonstration.';form.reset();}catch(error){status.dataset.state='error';status.textContent=error.name==='AbortError'?'La réponse prend plus de temps que prévu. Contactez contact@sms-ci.net avant de renouveler votre demande.':error.message||'Impossible de transmettre votre demande. Contactez contact@sms-ci.net.';}finally{clearTimeout(timeout);button.disabled=false;button.innerHTML='Envoyer ma demande <span aria-hidden="true">↗</span>'}});
