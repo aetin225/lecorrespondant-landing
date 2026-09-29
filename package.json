@@ -5,9 +5,7 @@
   "description": "Site marketing LE CORRESPONDANT — Cabinet SMS",
   "engines": { "node": ">=22" },
   "scripts": {
-    "build": "node scripts/check.cjs",
-    "dev": "node scripts/dev.cjs",
-    "test": "node --test tests/*.test.cjs"
+    "build": "echo 'Static site - no build required'"
   },
   "dependencies": { "nodemailer": "10.0.12" }
 }
