@@ -20,3 +20,6 @@
 .cookie-banner__accept:hover{background:#a20059}
 .cookie-banner__reject{flex:1;padding:.6rem 1rem;border-radius:.5rem;border:1.5px solid #dfe6ed;background:transparent;color:#607080;font-size:.85rem;font-weight:600;cursor:pointer;transition:border-color .15s}
 .cookie-banner__reject:hover{border-color:#607080}
+
+.cookie-banner.visible{display:flex !important}
+.cookie-overlay.visible{display:block !important}
