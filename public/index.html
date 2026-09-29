@@ -107,27 +107,29 @@
 (function(){
   var banner = document.getElementById('cookie-banner');
   var overlay = document.getElementById('cookie-overlay');
-  if(!banner) return;
-  // Si déjà consenti → on n'affiche pas
-  try { if(localStorage.getItem('cookie_consent')) return; } catch(e){}
-  // Afficher après le chargement de la page
-  window.addEventListener('DOMContentLoaded', function(){
+  if (!banner) return;
+  try { if (localStorage.getItem('cookie_consent')) return; } catch(e) {}
+  function show() {
     banner.classList.add('visible');
-    if(overlay) overlay.classList.add('visible');
-  });
-  function dismiss(){
-    banner.classList.remove('visible');
-    if(overlay) overlay.classList.remove('visible');
+    if (overlay) overlay.classList.add('visible');
   }
-  document.getElementById('cookie-accept').addEventListener('click', function(){
-    try { localStorage.setItem('cookie_consent','accepted'); } catch(e){}
-    dismiss();
-  });
-  document.getElementById('cookie-reject').addEventListener('click', function(){
-    try { localStorage.setItem('cookie_consent','rejected'); } catch(e){}
-    dismiss();
-  });
+  function hide() {
+    banner.classList.remove('visible');
+    if (overlay) overlay.classList.remove('visible');
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', show);
+  } else {
+    show();
+  }
+  document.getElementById('cookie-accept').onclick = function() {
+    try { localStorage.setItem('cookie_consent', 'accepted'); } catch(e) {}
+    hide();
+  };
+  document.getElementById('cookie-reject').onclick = function() {
+    try { localStorage.setItem('cookie_consent', 'rejected'); } catch(e) {}
+    hide();
+  };
 })();
 </script>
-
-</body></html>
+</body>
